@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://b12pe3y7rmmp4"]
+
+[ext_resource type="Script" uid="uid://cc0tfnuv1w6ji" path="res://menu_principal.gd" id="1_gmcsc"]
+[ext_resource type="Texture2D" uid="uid://btty8jaxate1t" path="res://Sprites/fondo menu.jpg" id="2_ul6ys"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvw3q"]
+bg_color = Color(0.23921569, 0.21568628, 0.19607843, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5411765, 0.29411766, 0.13333334, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rpww"]
+bg_color = Color(0.23921569, 0.21568628, 0.19607843, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5411765, 0.29411766, 0.13333334, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j51hw"]
+bg_color = Color(0.23921569, 0.21568628, 0.19607843, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5411765, 0.29411766, 0.13333334, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcqjd"]
+bg_color = Color(0.23921569, 0.21568628, 0.19607843, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5411765, 0.29411766, 0.13333334, 1)
+
+[node name="Menu principal" type="Control" unique_id=1794302160]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gmcsc")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=101148340]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect" unique_id=1244959459]
+position = Vector2(574.9999, 323.50003)
+scale = Vector2(0.40838063, 0.41992185)
+texture = ExtResource("2_ul6ys")
+
+[node name="Botonera" type="GridContainer" parent="." unique_id=173497883]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -348.0
+offset_top = -106.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+columns = 2
+metadata/_edit_group_ = true
+
+[node name="btnJugar" type="Button" parent="Botonera" unique_id=1406400852]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_xvw3q")
+text = "Nueva Partida"
+
+[node name="btnSalir" type="Button" parent="Botonera" unique_id=961186553]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_5rpww")
+text = "Salir"
+
+[node name="btnConfiguracion" type="Button" parent="Botonera" unique_id=1047293331]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_j51hw")
+text = "Configuracion"
+
+[node name="btnCreditos" type="Button" parent="Botonera" unique_id=508668519]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_mcqjd")
+text = "Creditos"

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://k3juewth2c1g"]
+
+[ext_resource type="Script" uid="uid://bi4ubh2snkfm5" path="res://combi.gd" id="1_e2640"]
+[ext_resource type="Texture2D" uid="uid://begk338ny3d6y" path="res://Sprites/combi.png" id="2_e2640"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvw3q"]
+size = Vector2(333.75, 133)
+
+[node name="Combi" type="Area2D" unique_id=1750001952]
+texture_filter = 1
+position = Vector2(-43, 11)
+script = ExtResource("1_e2640")
+metadata/_edit_group_ = true
+
+[node name="Apariencia" type="Sprite2D" parent="." unique_id=1271376187]
+scale = Vector2(0.21082301, 0.18771139)
+texture = ExtResource("2_e2640")
+
+[node name="Colision" type="CollisionShape2D" parent="." unique_id=69372034]
+position = Vector2(2.875, 5.5)
+shape = SubResource("RectangleShape2D_xvw3q")

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bgnxm7jruyarf"]
+
+[ext_resource type="Texture2D" uid="uid://bxa8wg5pb21xi" path="res://Sprites/AutoObstaculo.png" id="1_e50nw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itb0o"]
+
+[node name="AutoObstaculo" type="StaticBody2D" unique_id=2091549148]
+texture_filter = 1
+disable_mode = 1
+metadata/_edit_group_ = true
+
+[node name="Apariencia" type="Sprite2D" parent="." unique_id=1876268338]
+material = SubResource("ShaderMaterial_itb0o")
+scale = Vector2(0.29904172, 0.23581512)
+texture = ExtResource("1_e50nw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=107206273]
+position = Vector2(-4.6205587, -3.780849)
+scale = Vector2(11.151687, 11.066104)
+polygon = PackedVector2Array(-15.017687, 8.410593, 21.392101, 8.452011, 21.23004, 4.1445637, 19.825508, 2.0322576, 13.937278, 0.748307, 11.290276, 0.3755471, 4.2135954, -3.434887, -4.7538004, -3.973318, -11.93852, -3.9319, -18.150873, 0.20987606, -19.393343, 1.4109912, -19.555405, 3.1091194, -20.473753, 3.4818792, -20.14963, 5.5113497, -20.04159, 8.452011)
