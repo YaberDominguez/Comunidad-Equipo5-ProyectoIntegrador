@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://by4lme56r2bl8"]
+
+[ext_resource type="Texture2D" uid="uid://bwneu41supffp" path="res://auto2.png" id="1_mmbrl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xpxoo"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_88uyn"]
+a = Vector2(-0.98838806, -27.187653)
+b = Vector2(-36.988388, 59.812347)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_oexnn"]
+a = Vector2(52, -34)
+b = Vector2(-138, -38)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_trkv8"]
+b = Vector2(37.54785, 32.202744)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ijngp"]
+a = Vector2(1.7526855, 0.7788696)
+b = Vector2(64.752686, 9.77887)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wdk40"]
+a = Vector2(3.2225037, 0.30516052)
+b = Vector2(16.222504, 47.30516)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_88uyn"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oexnn"]
+radius = 28.077171
+
+[node name="Auto" type="RigidBody2D" unique_id=2022586281]
+light_mask = 7
+visibility_layer = 4
+mass = 50.0
+physics_material_override = SubResource("PhysicsMaterial_xpxoo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=967904647]
+position = Vector2(0, -1)
+scale = Vector2(0.23728155, 0.23326524)
+texture = ExtResource("1_mmbrl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=722419664]
+position = Vector2(-141.01161, -7.8123474)
+shape = SubResource("SegmentShape2D_88uyn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1484972321]
+shape = SubResource("SegmentShape2D_oexnn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=2042506235]
+position = Vector2(58.45215, -30.202744)
+shape = SubResource("SegmentShape2D_trkv8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=1554813419]
+position = Vector2(97.247314, 4.2211304)
+shape = SubResource("SegmentShape2D_ijngp")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="." unique_id=1108714845]
+position = Vector2(162.7775, 16.69484)
+shape = SubResource("SegmentShape2D_wdk40")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="." unique_id=738730970]
+position = Vector2(-107, 58)
+shape = SubResource("CircleShape2D_88uyn")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=2128811232]
+position = Vector2(118, 61)
+shape = SubResource("CircleShape2D_oexnn")

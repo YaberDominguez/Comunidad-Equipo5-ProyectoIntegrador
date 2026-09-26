@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://debvgw0obsgcf"]
+
+[ext_resource type="Script" uid="uid://c00qxmugnuiby" path="res://player_card.gd" id="1_4w3uk"]
+
+[node name="PlayerCard" type="VBoxContainer" unique_id=1810609995]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4w3uk")
+
+[node name="NameLabel" type="Label" parent="." unique_id=1813349831]
+layout_mode = 2
+text = "Jugador 1"
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=966579187]
+layout_mode = 2
+text = "0"

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c74bd3u0c48dm"]
+
+[ext_resource type="Script" uid="uid://c0h1ftmdtamac" path="res://camera_2d.gd" id="1_u0e42"]
+
+[node name="Camera2D" type="Camera2D" unique_id=212505348]
+limit_left = 0
+limit_top = 0
+limit_right = 2410
+limit_bottom = 651
+script = ExtResource("1_u0e42")

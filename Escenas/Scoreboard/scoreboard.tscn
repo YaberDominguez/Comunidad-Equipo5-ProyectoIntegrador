@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bhyryvi86i4oq"]
+
+[ext_resource type="Script" uid="uid://ckkqy5oehvm7y" path="res://scoreboard.gd" id="1_jeshg"]
+
+[node name="Scoreboard" type="Control" unique_id=1246933441]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jeshg")
+
+[node name="PlayersContainer" type="HBoxContainer" parent="." unique_id=1512338427]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
