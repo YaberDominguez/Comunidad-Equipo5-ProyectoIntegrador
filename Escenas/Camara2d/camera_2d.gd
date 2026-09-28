@@ -10,6 +10,7 @@ var jugador2: CharacterBody2D = null
 @export var margen_borde: float = 30.0
 
 func _ready() -> void:
+	process_physics_priority = 100 # <-- AGREGAR ESTA LÍNEA
 	await get_tree().process_frame
 	
 	var jugadores = get_tree().get_nodes_in_group("jugador")
@@ -27,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		
 		# 2. --- CÓDIGO DE CHOQUE CON LA CÁMARA ---
 		# Calculamos qué tamaño tiene la pantalla actual en píxeles
-		var tamano_pantalla = get_viewport_rect().size
+		var tamano_pantalla = get_viewport_rect().size / zoom
 		
 		# Calculamos los límites exactos (Izquierda y Derecha) de lo que la cámara ve ahora
 		var limite_izquierdo = global_position.x - (tamano_pantalla.x / 2.0) + margen_borde

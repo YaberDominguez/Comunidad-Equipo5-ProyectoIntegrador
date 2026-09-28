@@ -4,6 +4,9 @@ extends CharacterBody2D
 @export var player_id: int = 4
 @export var fuerza_empuje: float = 80.0 # Fuerza para mover objetos pesados (RigidBody2D)
 
+# Referencias a baterías
+var bateria_cercana: Area2D = null    # Batería en el suelo o en la espalda de otro jugador cerca
+var bateria_equipada: Area2D = null   # Batería que este jugador lleva encima
 # Esta variable la asigna dinámicamente el PlayerManager para P3 y P4
 var device_id: int = -1
 
@@ -14,8 +17,10 @@ var ultima_direccion := Vector2(1, 0)
 
 var gravedad: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-# Variable de estado para controlar la animación
+# Variables para suavizar la animación de empuje y evitar el bug
 var esta_empujando := false
+var tiempo_empujando := 0.0
+const MARGEN_EMPUJE := 0.15 # Tolerancia de 0.15s para que la animación no parpadee
 
 
 func _ready() -> void:
@@ -66,9 +71,19 @@ func _physics_process(delta: float) -> void:
 	# Aplica el movimiento
 	move_and_slide()
 
-	# --- 4. EMPUJAR OBJETOS (RigidBody2D) ---
-	esta_empujando = false
-	_procesar_empuje(direccion_x)
+	# --- 4. DETECCIÓN Y PROCESAMIENTO DE EMPUJE ---
+	var detecto_colision_caja := _procesar_empuje(direccion_x)
+
+	# Lógica con margen de tiempo (Buffer) para solucionar el bug de animación
+	if detecto_colision_caja:
+		tiempo_empujando = MARGEN_EMPUJE
+		esta_empujando = true
+	else:
+		if tiempo_empujando > 0:
+			tiempo_empujando -= delta
+			esta_empujando = true
+		else:
+			esta_empujando = false
 
 	# --- 5. CONTROL DE ANIMACIONES ---
 	if direccion_x != 0:
@@ -77,6 +92,11 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		$AnimatedSprite2D.play("saltar")
 	else:
+		# Si se deja de presionar el control horizontal, se cancela el empuje de inmediato
+		if direccion_x == 0:
+			esta_empujando = false
+			tiempo_empujando = 0.0
+
 		if esta_empujando:
 			$AnimatedSprite2D.play("empujar")
 		elif direccion_x != 0:
@@ -84,22 +104,40 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimatedSprite2D.play("idle")
 
+func _unhandled_input(event: InputEvent) -> void:
+	# Detecta si se presionó la acción global "Interactuar"
+	if not event.is_action_pressed("Interactuar"):
+		return
 
-# Función para interactuar físicamente y actualizar el estado de empuje
-func _procesar_empuje(direccion_x: float) -> void:
+	# CASO 1: Si ya lleva una batería, la suelta
+	if bateria_equipada != null:
+		bateria_equipada.ser_soltada()
+		get_viewport().set_input_as_handled()
+		return
+
+	# CASO 2: Si hay una batería cerca (en el suelo O llevada por otro pj) y tiene las manos libres
+	if bateria_cercana != null and bateria_equipada == null:
+		bateria_cercana.ser_agarrada_por(self)
+		get_viewport().set_input_as_handled()
+# Función que aplica fuerza física al RigidBody2D y devuelve true si hay colisión activa de empuje
+func _procesar_empuje(direccion_x: float) -> bool:
+	var empujando_caja := false
+
 	for i in get_slide_collision_count():
 		var colision := get_slide_collision(i)
 		var objeto_colisionado := colision.get_collider()
 
-		# Comprueba si el objeto es de tipo RigidBody2D
+		# Comprueba si el objeto es de tipo RigidBody2D (como el Auto)
 		if objeto_colisionado is RigidBody2D:
 			# Calcula la dirección del impacto horizontal
 			var normal_x = colision.get_normal().x
 			var direccion_empuje := Vector2(-normal_x, 0)
 			
-			# Aplicar fuerza física a la caja
+			# Aplicar fuerza física al objeto
 			objeto_colisionado.apply_central_impulse(direccion_empuje * fuerza_empuje)
 			
-			# Si el jugador está en el suelo y camina en dirección a la caja, activa la animación
+			# Verifica que el jugador esté en el suelo y camine en dirección al objeto
 			if is_on_floor() and sign(direccion_x) == sign(-normal_x):
-				esta_empujando = true
+				empujando_caja = true
+
+	return empujando_caja

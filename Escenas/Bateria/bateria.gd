@@ -1,62 +1,52 @@
 extends Area2D
 
-var jugador_actual: CharacterBody2D = null  # Quién la tiene en mano ahora
-var ladron_en_rango: CharacterBody2D = null # Otro jugador cerca que puede robarla o levantarla
+# Referencia al jugador que la lleva puesta actualmente (null si está en el suelo)
+var duenio_actual: CharacterBody2D = null
+
 func _ready() -> void:
 	add_to_group("Bateria")
-	body_entered.connect(Interaccion_posible)
-	body_exited.connect(Interaccion_no_posible)
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 
-func Interaccion_posible(body: Node2D) -> void:
-	# Solo nos interesa si es un jugador y NO es quien ya la tiene agarrada
-	if body.is_in_group("Jugador") and body != jugador_actual:
-		ladron_en_rango = body
+func _on_body_entered(body: Node2D) -> void:
+	# Si un jugador entra al rango y no es el dueño actual, le avisamos que puede agarrarla/robarla
+	if body.is_in_group("jugador") and body != duenio_actual:
+		if "bateria_cercana" in body:
+			body.bateria_cercana = self
 
-func Interaccion_no_posible(body: Node2D) -> void:
-	if body == ladron_en_rango:
-		ladron_en_rango = null
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("jugador") and "bateria_cercana" in body:
+		if body.bateria_cercana == self:
+			body.bateria_cercana = null
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_action_pressed("Interactuar"):
-		return
-
-	# caso base 1 cuando el jugador que lleva la bateria puede soltarla
-	if jugador_actual != null:
-		soltar()
-		return
-	#caso base 2 cuando la bateria esta en el piso o un jugador se acerca para poder robarla
-	if ladron_en_rango != null:
-		# Si el que intenta agarrar ya tiene otra batería en mano, no lo dejamos
-		if ladron_en_rango.has_meta("tiene_bateria") and ladron_en_rango.get_meta("tiene_bateria") == true:
-			return
-		else:
-			transferir_a(ladron_en_rango)
-
-func transferir_a(nuevo_duenio: CharacterBody2D) -> void:
-	# Si alguien ya la tenía, le quitamos la marca
-	if jugador_actual != null:
-		jugador_actual.set_meta("tiene_bateria", false)
+## Llamado por el jugador que intenta agarrar o robar
+func ser_agarrada_por(nuevo_duenio: CharacterBody2D) -> void:
+	# Si ya tiene un dueño (es un robo)
+	if duenio_actual != null:
+		duenio_actual.bateria_equipada = null
 	
-	jugador_actual = nuevo_duenio
-	jugador_actual.set_meta("tiene_bateria", true)
-	ladron_en_rango = null
+	duenio_actual = nuevo_duenio
+	duenio_actual.bateria_equipada = self
 	
-	# La emparientamos al nuevo dueño
+	# Si el nuevo dueño la tenía como "cercana", ya no lo está porque ahora la tiene en mano
+	if duenio_actual.bateria_cercana == self:
+		duenio_actual.bateria_cercana = null
+
+	# La emparentamos al jugador y la centramos
 	reparent(nuevo_duenio)
-	position = Vector2.ZERO
+	position = Vector2(0, -20) # Ajustá la altura según el sprite de tu personaje
 
-func soltar() -> void:
-	if jugador_actual == null:
+## Llamado por el jugador que la suelta
+func ser_soltada() -> void:
+	if duenio_actual == null:
 		return
 
-	# 1. Guardamos la posición global donde quedó el jugador antes de desvincularlo
-	var pos_suelo: Vector2 = global_position
+	var pos_global_suelo: Vector2 = global_position
 	
-	# 2. Liberamos al jugador
-	jugador_actual.set_meta("tiene_bateria", false)
-	jugador_actual = null
+	duenio_actual.bateria_equipada = null
+	duenio_actual = null
 
-	# 3. La devolvemos a la escena principal/nivel (el padre del jugador)
+	# La devolvemos a la raíz de la escena del nivel
 	var nivel = get_tree().current_scene
 	reparent(nivel)
-	global_position = pos_suelo
+	global_position = pos_global_suelo

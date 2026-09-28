@@ -4,6 +4,9 @@ extends CharacterBody2D
 @export var player_id: int = 1
 @export var fuerza_empuje: float = 80.0 # Fuerza para mover objetos pesados (RigidBody2D)
 
+# Referencias a baterías
+var bateria_cercana: Area2D = null    # Batería en el suelo o en la espalda de otro jugador cerca
+var bateria_equipada: Area2D = null   # Batería que este jugador lleva encima
 # Esta variable la asigna dinámicamente el PlayerManager para P3 y P4
 var device_id: int = -1
 
@@ -101,7 +104,21 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimatedSprite2D.play("idle")
 
+func _unhandled_input(event: InputEvent) -> void:
+	# Detecta si se presionó la acción global "Interactuar"
+	if not event.is_action_pressed("Interactuar"):
+		return
 
+	# CASO 1: Si ya lleva una batería, la suelta
+	if bateria_equipada != null:
+		bateria_equipada.ser_soltada()
+		get_viewport().set_input_as_handled()
+		return
+
+	# CASO 2: Si hay una batería cerca (en el suelo O llevada por otro pj) y tiene las manos libres
+	if bateria_cercana != null and bateria_equipada == null:
+		bateria_cercana.ser_agarrada_por(self)
+		get_viewport().set_input_as_handled()
 # Función que aplica fuerza física al RigidBody2D y devuelve true si hay colisión activa de empuje
 func _procesar_empuje(direccion_x: float) -> bool:
 	var empujando_caja := false

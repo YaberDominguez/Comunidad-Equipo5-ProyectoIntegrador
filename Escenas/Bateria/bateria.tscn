@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ro3sgr855sii"]
 
-[ext_resource type="Script" uid="uid://cst0gv2ynntyq" path="res://bateria.gd" id="1_hr6es"]
+[ext_resource type="Script" uid="uid://cst0gv2ynntyq" path="res://Escenas/Bateria/bateria.gd" id="1_hr6es"]
 [ext_resource type="Texture2D" uid="uid://chrflungdpii7" path="res://Sprites/bateria.png" id="1_wlft8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j51hw"]
@@ -9,6 +9,8 @@ height = 80.0
 
 [node name="Bateria" type="Area2D" unique_id=2129517322]
 texture_filter = 1
+collision_layer = 128
+collision_mask = 128
 script = ExtResource("1_hr6es")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1438606312]

@@ -10,15 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://debvgw0obsgcf" path="res://Escenas/Playercard/player_card.tscn" id="7_twe08"]
 [ext_resource type="PackedScene" uid="uid://c8g0epig0stmi" path="res://Escenas/Jugadores/jugador_2.tscn" id="7_v1xek"]
 [ext_resource type="PackedScene" uid="uid://c74bd3u0c48dm" path="res://Escenas/Camara2d/camera_2d.tscn" id="7_yhhse"]
+[ext_resource type="PackedScene" uid="uid://46rw3x464cc2" path="res://Escenas/Jugadores/jugador_3.tscn" id="11_xskn7"]
+[ext_resource type="PackedScene" uid="uid://nfsyet2fm3wv" path="res://Escenas/Jugadores/jugador_4.tscn" id="12_sm36x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
 size = Vector2(3163.25, 259)
 
 [node name="Nivel_Bicentenario" type="Node2D" unique_id=1337881228]
 texture_filter = 1
-
-[node name="Camera2D" parent="." unique_id=212505348 instance=ExtResource("7_yhhse")]
-position = Vector2(104, 214)
 
 [node name="mapa" type="StaticBody2D" parent="." unique_id=1694425938]
 position = Vector2(959, 325)
@@ -66,3 +65,18 @@ position = Vector2(104, 214)
 
 [node name="Jugador2" parent="." unique_id=1590662740 instance=ExtResource("7_v1xek")]
 position = Vector2(312, 100)
+
+[node name="Jugador3" parent="." unique_id=1700935909 instance=ExtResource("11_xskn7")]
+position = Vector2(450, 128)
+
+[node name="Jugador4" parent="." unique_id=269301176 instance=ExtResource("12_sm36x")]
+position = Vector2(366, 276)
+player_id = 4
+fuerza_empuje = 80.0
+
+[node name="Camera2D" parent="." unique_id=212505348 instance=ExtResource("7_yhhse")]
+position = Vector2(104, 214)
+limit_left = -8
+limit_top = 248
+limit_right = 2402
+limit_bottom = 899
