@@ -4,14 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://bgnxm7jruyarf" path="res://Escenas/Auto obstaculo/auto_obstaculo.tscn" id="2_y0iap"]
 [ext_resource type="PackedScene" uid="uid://ro3sgr855sii" path="res://Escenas/Bateria/bateria.tscn" id="3_hhkdk"]
 [ext_resource type="PackedScene" uid="uid://k3juewth2c1g" path="res://Escenas/Combi/combi.tscn" id="4_8idku"]
+[ext_resource type="PackedScene" uid="uid://ddj71cnmnbf40" path="res://Escenas/Terminal/terminal.tscn" id="5_sm36x"]
 [ext_resource type="PackedScene" uid="uid://cxr5kikjd0far" path="res://Escenas/Jugadores/jugador_1.tscn" id="6_p8jl7"]
 [ext_resource type="PackedScene" uid="uid://by4lme56r2bl8" path="res://Escenas/Auto/auto.tscn" id="7_0w02a"]
 [ext_resource type="PackedScene" uid="uid://5r785cfgq4cq" path="res://Escenas/PlayerManager/player_manager.tscn" id="7_ekfh6"]
-[ext_resource type="PackedScene" uid="uid://debvgw0obsgcf" path="res://Escenas/Playercard/player_card.tscn" id="7_twe08"]
 [ext_resource type="PackedScene" uid="uid://c8g0epig0stmi" path="res://Escenas/Jugadores/jugador_2.tscn" id="7_v1xek"]
 [ext_resource type="PackedScene" uid="uid://c74bd3u0c48dm" path="res://Escenas/Camara2d/camera_2d.tscn" id="7_yhhse"]
-[ext_resource type="PackedScene" uid="uid://46rw3x464cc2" path="res://Escenas/Jugadores/jugador_3.tscn" id="11_xskn7"]
-[ext_resource type="PackedScene" uid="uid://nfsyet2fm3wv" path="res://Escenas/Jugadores/jugador_4.tscn" id="12_sm36x"]
+[ext_resource type="PackedScene" uid="uid://46rw3x464cc2" path="res://Escenas/Jugadores/jugador_3.tscn" id="9_v1xek"]
+[ext_resource type="PackedScene" uid="uid://df7segn6o7irq" path="res://Escenas/UI/ui.tscn" id="9_xskn7"]
+[ext_resource type="PackedScene" uid="uid://nfsyet2fm3wv" path="res://Escenas/Jugadores/jugador_4.tscn" id="10_xskn7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
 size = Vector2(3163.25, 259)
@@ -49,34 +50,43 @@ position = Vector2(333, 660)
 [node name="Bateria4" parent="." unique_id=262648622 instance=ExtResource("3_hhkdk")]
 position = Vector2(1155, 662)
 
-[node name="Combi" parent="." unique_id=1750001952 instance=ExtResource("4_8idku")]
-position = Vector2(2826, 558)
+[node name="Combi" parent="." unique_id=1750001952 node_paths=PackedStringArray("ui_control") instance=ExtResource("4_8idku")]
+position = Vector2(2821, 555)
 scale = Vector2(2, 2)
+ui_control = NodePath("../CanvasLayer/UI")
+
+[node name="Terminal" parent="." unique_id=1092223480 instance=ExtResource("5_sm36x")]
+position = Vector2(1490, 637)
 
 [node name="Auto" parent="." unique_id=2022586281 instance=ExtResource("7_0w02a")]
-position = Vector2(1504, 611)
-
-[node name="Jugador1" parent="." unique_id=573316338 instance=ExtResource("6_p8jl7")]
-position = Vector2(104, 214)
+position = Vector2(1505, 611)
+collision_layer = 7
 
 [node name="PlayerManager" parent="." unique_id=1680986880 instance=ExtResource("7_ekfh6")]
 
-[node name="PlayerCard" parent="." unique_id=1810609995 instance=ExtResource("7_twe08")]
+[node name="Jugador1" parent="." unique_id=573316338 instance=ExtResource("6_p8jl7")]
+position = Vector2(104, 214)
+fuerza_empuje = 140.0
 
 [node name="Jugador2" parent="." unique_id=1590662740 instance=ExtResource("7_v1xek")]
-position = Vector2(312, 100)
+position = Vector2(306.34338, 256.06604)
+fuerza_empuje = 140.0
 
-[node name="Jugador3" parent="." unique_id=1700935909 instance=ExtResource("11_xskn7")]
-position = Vector2(450, 128)
+[node name="Jugador3" parent="." unique_id=1700935909 instance=ExtResource("9_v1xek")]
+visible = false
+position = Vector2(420.34088, 394.43362)
+fuerza_empuje = 140.0
 
-[node name="Jugador4" parent="." unique_id=269301176 instance=ExtResource("12_sm36x")]
-position = Vector2(366, 276)
-player_id = 4
-fuerza_empuje = 80.0
+[node name="Jugador4" parent="." unique_id=269301176 groups=["jugador"] instance=ExtResource("10_xskn7")]
+visible = false
+position = Vector2(518.2599, 319.11136)
+fuerza_empuje = 140.0
 
 [node name="Camera2D" parent="." unique_id=212505348 instance=ExtResource("7_yhhse")]
 position = Vector2(104, 214)
-limit_left = -8
-limit_top = 248
-limit_right = 2402
+limit_right = 3164
 limit_bottom = 899
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=396915978]
+
+[node name="UI" parent="CanvasLayer" unique_id=1962916398 instance=ExtResource("9_xskn7")]

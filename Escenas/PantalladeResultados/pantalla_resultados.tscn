@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://hwc4ppeacvnt"]
+
+[ext_resource type="Script" uid="uid://d1rt6l2g0qrwn" path="res://Escenas/PantalladeResultados/pantalla_resultados.gd" id="1_shwi2"]
+
+[node name="PantallaResultados" type="Control" unique_id=1079950556]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_shwi2")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=1979530969]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0.44705883, 0.42745098, 0.19215687, 1)
+
+[node name="LabelTitulo" type="Label" parent="." unique_id=1954410138]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 219.0
+offset_right = 636.0
+offset_bottom = 242.0
+text = "Nivel Completado"
+
+[node name="LabelPuntajes" type="Label" parent="." unique_id=2114553204]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 254.0
+offset_right = 663.0
+offset_bottom = 422.0
+
+[node name="Botonera" type="Control" parent="." unique_id=466076639]
+anchors_preset = 0
+offset_left = 439.0
+offset_top = 203.0
+offset_right = 698.0
+offset_bottom = 499.0
+
+[node name="Btnreset" type="Button" parent="Botonera" unique_id=943055165]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 267.0
+offset_right = 258.0
+offset_bottom = 298.0
+text = "Reset
+"
+
+[node name="Btnmenu" type="Button" parent="Botonera" unique_id=2047237882]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 234.0
+offset_right = 258.0
+offset_bottom = 265.0
+text = "Menu"

@@ -284,11 +284,9 @@ animations = [{
 size = Vector2(73, 84)
 
 [node name="Jugador4" type="CharacterBody2D" unique_id=269301176]
-collision_layer = 2
+collision_layer = 130
 collision_mask = 5
 script = ExtResource("1_dys6m")
-player_id = null
-fuerza_empuje = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1811898583]
 texture_filter = 1

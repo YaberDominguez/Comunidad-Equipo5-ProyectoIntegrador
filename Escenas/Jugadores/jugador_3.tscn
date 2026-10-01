@@ -311,8 +311,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34v7f"]
 size = Vector2(68, 78)
 
-[node name="Jugador3" type="CharacterBody2D" unique_id=1700935909]
-collision_layer = 2
+[node name="Jugador3" type="CharacterBody2D" unique_id=1700935909 groups=["jugador"]]
+collision_layer = 130
 collision_mask = 5
 script = ExtResource("1_x6tf0")
 

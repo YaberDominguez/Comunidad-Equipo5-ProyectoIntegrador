@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://df7segn6o7irq"]
+
+[ext_resource type="Script" uid="uid://c8odnlthjt1vt" path="res://ui.gd" id="1_fyqef"]
+
+[node name="UI" type="Control" unique_id=1962916398]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fyqef")
+
+[node name="LabelP1" type="Label" parent="." unique_id=540095184]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "P1: 0"
+
+[node name="LabelP2" type="Label" parent="." unique_id=1692188771]
+layout_mode = 0
+offset_left = 53.0
+offset_right = 93.0
+offset_bottom = 23.0
+text = "P2: 0"
+
+[node name="LabelP3" type="Label" parent="." unique_id=2034137517]
+layout_mode = 0
+offset_left = 116.0
+offset_right = 156.0
+offset_bottom = 23.0
+text = "P3: 0"
+
+[node name="LabelP4" type="Label" parent="." unique_id=1580763659]
+layout_mode = 0
+offset_left = 167.0
+offset_right = 207.0
+offset_bottom = 23.0
+text = "P4: 0"

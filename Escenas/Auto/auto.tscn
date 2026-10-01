@@ -7,8 +7,10 @@
 [node name="Auto" type="RigidBody2D" unique_id=2022586281]
 light_mask = 7
 visibility_layer = 4
-mass = 50.0
+collision_layer = 129
+mass = 20.0
 physics_material_override = SubResource("PhysicsMaterial_xpxoo")
+linear_damp = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=967904647]
 position = Vector2(0, -1)

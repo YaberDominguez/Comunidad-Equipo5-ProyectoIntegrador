@@ -105,20 +105,24 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("idle")
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Detecta si se presionó la acción global "Interactuar"
-	if not event.is_action_pressed("Interactuar"):
-		return
+	# Construye el prefijo: "p1_" para P1, "p2_" para P2
+	var prefix := "p" + str(player_id) + "_"
+	
+	# Verifica si se presionó la tecla de interactuar de ESTE jugador
+	if event.is_action_pressed(prefix + "interactuar"):
+		
+		# CASO 1: Si ya tiene una batería equipada, la suelta
+		if bateria_equipada != null:
+			bateria_equipada.ser_soltada()
+			get_viewport().set_input_as_handled()
+			return
 
-	# CASO 1: Si ya lleva una batería, la suelta
-	if bateria_equipada != null:
-		bateria_equipada.ser_soltada()
-		get_viewport().set_input_as_handled()
-		return
+		# CASO 2: Si hay una batería cerca y tiene las manos libres, la agarra
+		if bateria_cercana != null and bateria_equipada == null:
+			bateria_cercana.ser_agarrada_por(self)
+			get_viewport().set_input_as_handled()
 
-	# CASO 2: Si hay una batería cerca (en el suelo O llevada por otro pj) y tiene las manos libres
-	if bateria_cercana != null and bateria_equipada == null:
-		bateria_cercana.ser_agarrada_por(self)
-		get_viewport().set_input_as_handled()
+# Función que aplica fuerza física al RigidBody2D y devuelve true si hay colisión activa de empuje
 # Función que aplica fuerza física al RigidBody2D y devuelve true si hay colisión activa de empuje
 func _procesar_empuje(direccion_x: float) -> bool:
 	var empujando_caja := false
@@ -131,13 +135,15 @@ func _procesar_empuje(direccion_x: float) -> bool:
 		if objeto_colisionado is RigidBody2D:
 			# Calcula la dirección del impacto horizontal
 			var normal_x = colision.get_normal().x
-			var direccion_empuje := Vector2(-normal_x, 0)
 			
-			# Aplicar fuerza física al objeto
-			objeto_colisionado.apply_central_impulse(direccion_empuje * fuerza_empuje)
-			
-			# Verifica que el jugador esté en el suelo y camine en dirección al objeto
-			if is_on_floor() and sign(direccion_x) == sign(-normal_x):
+			# Verifica que el jugador esté en el suelo y caminando EN DIRECCIÓN al objeto
+			if is_on_floor() and direccion_x != 0 and sign(direccion_x) == sign(-normal_x):
+				var direccion_empuje := Vector2(-normal_x, 0)
+				
+				# Aplicamos FUERZA CONTINUA (no impulso)
+				# 1 jugador = fuerza insuficiente | 2 jugadores = fuerza suficiente
+				objeto_colisionado.apply_central_force(direccion_empuje * fuerza_empuje * 100.0)
+				
 				empujando_caja = true
 
 	return empujando_caja

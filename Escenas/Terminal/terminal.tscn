@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ddj71cnmnbf40"]
+
+[ext_resource type="Script" uid="uid://c4telsu8fggcm" path="res://terminal.gd" id="1_7d6gb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyn"]
+size = Vector2(70, 128)
+
+[node name="Terminal" type="Area2D" unique_id=1092223480]
+collision_mask = 128
+script = ExtResource("1_7d6gb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2019385869]
+shape = SubResource("RectangleShape2D_88uyn")
+
+[node name="Soporte" type="ColorRect" parent="." unique_id=502165868]
+offset_left = -35.0
+offset_top = -64.0
+offset_right = 35.0
+offset_bottom = 67.0
+color = Color(0.027083628, 0.015039947, 0.0036627892, 1)
+
+[node name="MarcoPantalla" type="ColorRect" parent="." unique_id=1784834071]
+offset_left = -67.0
+offset_top = -121.0
+offset_right = 70.0
+offset_bottom = -63.0
+color = Color(6.180691e-05, 6.180692e-05, 6.180691e-05, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarcoPantalla" unique_id=1700476571]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 133.0
+offset_bottom = 51.0
+rotation = -0.0012612473
+color = Color(0.4630682, 0.4630682, 0.4630682, 1)
+
+[node name="LabelEstado" type="Label" parent="MarcoPantalla" unique_id=1518539674]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 124.0
+offset_bottom = 41.0

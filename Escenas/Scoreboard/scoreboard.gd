@@ -1,7 +1,7 @@
 extends Control
 
 # Asegúrate de que la ruta coincida con la escena del Paso 1
-const PLAYER_CARD_SCENE = preload("res://player_card.tscn")
+const PLAYER_CARD_SCENE = preload("res://Escenas/Scoreboard/scoreboard.tscn")
 
 @onready var players_container: HBoxContainer = $PlayersContainer
 
