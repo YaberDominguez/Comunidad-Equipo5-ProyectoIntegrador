@@ -1,14 +1,17 @@
 extends CharacterBody2D
 
+# Configura este valor desde el Inspector (1 para P1, 2 para P2, etc.)
 @export var player_id: int = 3
-@export var fuerza_empuje: float = 80.0
+@export var fuerza_empuje: float = 80.0 # Fuerza para mover objetos pesados (RigidBody2D)
 
-# Asigna este ID desde tu PlayerManager al instanciar al jugador (0 para el 1er mando, 1 para el 2do mando)
-@export var device_id: int = -1 
+# Referencias a baterías (Cambiado de Area2D a RigidBody2D)
+var bateria_cercana: RigidBody2D = null    
+var bateria_equipada: RigidBody2D = null
 
-# Referencias a baterías
-var bateria_cercana: Area2D = null
-var bateria_equipada: Area2D = null
+var cargador_cercano: Area2D = null
+var colectivo_cercano: Area2D = null # La usaremos para el final
+# Esta variable la asigna dinámicamente el PlayerManager para P3 y P4
+var device_id: int = -1
 
 var velocidad := 200.0
 var fuerza_salto := -600.0
@@ -17,21 +20,14 @@ var ultima_direccion := Vector2(1, 0)
 
 var gravedad: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-# Variables para animación de empuje
+# Variables para suavizar la animación de empuje y evitar el bug
 var esta_empujando := false
 var tiempo_empujando := 0.0
-const MARGEN_EMPUJE := 0.15
-
-var prefix: String = ""
-
-# Guardamos las entradas procesadas directamente desde eventos de este mando
-var direccion_x: float = 0.0
-var quiere_saltar: bool = false
+const MARGEN_EMPUJE := 0.15 # Tolerancia de 0.15s para que la animación no parpadee
 
 
 func _ready() -> void:
 	add_to_group("jugador")
-	prefix = "p" + str(player_id) + "_"
 
 
 func _physics_process(delta: float) -> void:
@@ -40,14 +36,11 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravedad * delta
 
 	# --- 2. LECTURA DE ENTRADAS SEPARADA ---
-	@warning_ignore("shadowed_variable")
 	var direccion_x := 0.0
-	@warning_ignore("shadowed_variable")
 	var quiere_saltar := false
 
 	if player_id <= 2:
 		# P1 y P2 usan Teclado desde el Input Map (acciones con prefijo p1_ / p2_)
-		@warning_ignore("shadowed_variable")
 		var prefix = "p" + str(player_id) + "_"
 		direccion_x = Input.get_axis(prefix + "izquierda", prefix + "derecha")
 		quiere_saltar = Input.is_action_just_pressed(prefix + "saltar")
@@ -115,26 +108,28 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("idle")
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Construye el prefijo: "p1_" para P1, "p2_" para P2
-	@warning_ignore("shadowed_variable")
-	var prefix := "p" + str(player_id) + "_"
-	
-	# Verifica si se presionó la tecla de interactuar de ESTE jugador
-	if event.is_action_pressed(prefix + "interactuar"):
-		
-		# CASO 1: Si ya tiene una batería equipada, la suelta
-		if bateria_equipada != null:
+	# Detecta si se presionó la acción global "Interactuar"
+	if not event.is_action_pressed("p1_interactuar"):
+		return
+
+	# CASO 1: Si ya lleva una batería, la suelta o la pone en el cargador
+	if bateria_equipada != null:
+		if cargador_cercano != null and cargador_cercano.puede_recibir():
+			# Si estamos en el cargador, se la entregamos
+			cargador_cercano.recibir_bateria(self, bateria_equipada)
+		else:
+			# Si no hay cargador, la tira al piso normalmente
 			bateria_equipada.ser_soltada()
-			get_viewport().set_input_as_handled()
-			return
+		
+		get_viewport().set_input_as_handled()
+		return
 
-		# CASO 2: Si hay una batería cerca y tiene las manos libres, la agarra
-		if bateria_cercana != null and bateria_equipada == null:
-			bateria_cercana.ser_agarrada_por(self)
-			get_viewport().set_input_as_handled()
+	# CASO 2: Si hay una batería cerca (en el suelo O llevada por otro pj) y tiene las manos libres
+	if bateria_cercana != null and bateria_equipada == null:
+		bateria_cercana.ser_agarrada_por(self)
+		get_viewport().set_input_as_handled()
+# Función que aplica fuerza física al RigidBody2D y devuelve true si hay colisión activa de empuje
 
-
-@warning_ignore("shadowed_variable")
 func _procesar_empuje(direccion_x: float) -> bool:
 	var empujando_caja := false
 

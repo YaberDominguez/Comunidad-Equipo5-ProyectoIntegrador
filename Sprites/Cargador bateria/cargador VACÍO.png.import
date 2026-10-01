@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba4eehd4wcxi7"
-path="res://.godot/imported/AutoObjeto.png-41189da25d5f3ba96b97f3cd4061fa4f.ctex"
+uid="uid://dvinib5m102ww"
+path="res://.godot/imported/cargador VACÍO.png-5082dc1596c4d1aa433ec90f8be0ab07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/AutoObjeto.png"
-dest_files=["res://.godot/imported/AutoObjeto.png-41189da25d5f3ba96b97f3cd4061fa4f.ctex"]
+source_file="res://Sprites/Cargador bateria/cargador VACÍO.png"
+dest_files=["res://.godot/imported/cargador VACÍO.png-5082dc1596c4d1aa433ec90f8be0ab07.ctex"]
 
 [params]
 

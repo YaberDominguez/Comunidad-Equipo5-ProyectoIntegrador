@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chrflungdpii7"
-path="res://.godot/imported/bateria.png-9c28a1f25401141f34d7e161fcee32da.ctex"
+uid="uid://btty8jaxate1t"
+path="res://.godot/imported/fondo menu.jpg-caaff27151457ab47a397e57515d3413.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/bateria.png"
-dest_files=["res://.godot/imported/bateria.png-9c28a1f25401141f34d7e161fcee32da.ctex"]
+source_file="res://Sprites/Menu principal/fondo menu.jpg"
+dest_files=["res://.godot/imported/fondo menu.jpg-caaff27151457ab47a397e57515d3413.ctex"]
 
 [params]
 

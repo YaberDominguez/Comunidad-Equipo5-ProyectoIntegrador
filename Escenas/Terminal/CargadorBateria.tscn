@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c5ej8ipj1m52b"]
+
+[ext_resource type="Texture2D" uid="uid://dvinib5m102ww" path="res://Sprites/Cargador bateria/cargador VACÍO.png" id="1_jqw55"]
+[ext_resource type="Script" uid="uid://c0tkjhrrkhcw0" path="res://Escenas/Terminal/cargador_bateria.gd" id="1_xk0a4"]
+[ext_resource type="Texture2D" uid="uid://cb0oepuufnq5l" path="res://Sprites/Cargador bateria/batería neutral.png" id="3_2vueb"]
+[ext_resource type="Texture2D" uid="uid://b1gcl1lk5o5yh" path="res://Sprites/Cargador bateria/batería correcta.png" id="4_x1jca"]
+[ext_resource type="Texture2D" uid="uid://cn03yw70e3wtp" path="res://Sprites/Cargador bateria/batería quemada.png" id="5_fiapo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
+size = Vector2(180, 195)
+
+[node name="Area2D" type="Area2D" unique_id=1844069839]
+collision_mask = 3
+script = ExtResource("1_xk0a4")
+tex_vacio = ExtResource("1_jqw55")
+tex_neutral = ExtResource("3_2vueb")
+tex_correcta = ExtResource("4_x1jca")
+tex_quemada = ExtResource("5_fiapo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=594505235]
+scale = Vector2(0.080221035, 0.08183903)
+texture = ExtResource("1_jqw55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971973500]
+position = Vector2(3, -55.5)
+shape = SubResource("RectangleShape2D_itb0o")

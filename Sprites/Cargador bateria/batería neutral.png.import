@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://begk338ny3d6y"
-path="res://.godot/imported/combi.png-260c17503476d05f3a695cc51670a727.ctex"
+uid="uid://cb0oepuufnq5l"
+path="res://.godot/imported/batería neutral.png-7e653c0ad1843715ef4684aa4997d0e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/combi.png"
-dest_files=["res://.godot/imported/combi.png-260c17503476d05f3a695cc51670a727.ctex"]
+source_file="res://Sprites/Cargador bateria/batería neutral.png"
+dest_files=["res://.godot/imported/batería neutral.png-7e653c0ad1843715ef4684aa4997d0e0.ctex"]
 
 [params]
 

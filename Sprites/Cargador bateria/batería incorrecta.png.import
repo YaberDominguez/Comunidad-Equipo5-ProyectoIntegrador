@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd4fc1lx5rm7f"
-path="res://.godot/imported/mapa-bicentenario-a_medias.png-eb274437f9a16fa1f818c6ea96a3c22b.ctex"
+uid="uid://p7x2xh7jhevx"
+path="res://.godot/imported/batería incorrecta.png-aa0a9cd00d7421020901718f398d5ba1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/mapa-bicentenario-a_medias.png"
-dest_files=["res://.godot/imported/mapa-bicentenario-a_medias.png-eb274437f9a16fa1f818c6ea96a3c22b.ctex"]
+source_file="res://Sprites/Cargador bateria/batería incorrecta.png"
+dest_files=["res://.godot/imported/batería incorrecta.png-aa0a9cd00d7421020901718f398d5ba1.ctex"]
 
 [params]
 

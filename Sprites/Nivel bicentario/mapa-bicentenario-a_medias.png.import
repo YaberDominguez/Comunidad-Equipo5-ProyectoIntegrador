@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btty8jaxate1t"
-path="res://.godot/imported/fondo menu.jpg-f9b5b5ddc53ef5aaaecd912ab90efbdb.ctex"
+uid="uid://bd4fc1lx5rm7f"
+path="res://.godot/imported/mapa-bicentenario-a_medias.png-7f14a459ceb2681533d15656872ddc97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/fondo menu.jpg"
-dest_files=["res://.godot/imported/fondo menu.jpg-f9b5b5ddc53ef5aaaecd912ab90efbdb.ctex"]
+source_file="res://Sprites/Nivel bicentario/mapa-bicentenario-a_medias.png"
+dest_files=["res://.godot/imported/mapa-bicentenario-a_medias.png-7f14a459ceb2681533d15656872ddc97.ctex"]
 
 [params]
 

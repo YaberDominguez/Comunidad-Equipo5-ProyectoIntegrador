@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://bts8myqkhfpgp"]
 
-[ext_resource type="Texture2D" uid="uid://bd4fc1lx5rm7f" path="res://Sprites/mapa-bicentenario-a_medias.png" id="1_58ajw"]
+[ext_resource type="Texture2D" uid="uid://bd4fc1lx5rm7f" path="res://Sprites/Nivel bicentario/mapa-bicentenario-a_medias.png" id="1_djuao"]
+[ext_resource type="Script" uid="uid://c33y0qgdmvtxi" path="res://Escenas/Nivel bicentenario/nivel_bicenterario.gd" id="1_h7xu0"]
 [ext_resource type="PackedScene" uid="uid://bgnxm7jruyarf" path="res://Escenas/Auto obstaculo/auto_obstaculo.tscn" id="2_y0iap"]
 [ext_resource type="PackedScene" uid="uid://ro3sgr855sii" path="res://Escenas/Bateria/bateria.tscn" id="3_hhkdk"]
 [ext_resource type="PackedScene" uid="uid://k3juewth2c1g" path="res://Escenas/Combi/combi.tscn" id="4_8idku"]
 [ext_resource type="PackedScene" uid="uid://ddj71cnmnbf40" path="res://Escenas/Terminal/terminal.tscn" id="5_sm36x"]
+[ext_resource type="PackedScene" uid="uid://c5ej8ipj1m52b" path="res://Escenas/Terminal/CargadorBateria.tscn" id="6_djuao"]
 [ext_resource type="PackedScene" uid="uid://cxr5kikjd0far" path="res://Escenas/Jugadores/jugador_1.tscn" id="6_p8jl7"]
 [ext_resource type="PackedScene" uid="uid://by4lme56r2bl8" path="res://Escenas/Auto/auto.tscn" id="7_0w02a"]
 [ext_resource type="PackedScene" uid="uid://5r785cfgq4cq" path="res://Escenas/PlayerManager/player_manager.tscn" id="7_ekfh6"]
@@ -19,6 +21,7 @@ size = Vector2(3163.25, 259)
 
 [node name="Nivel_Bicentenario" type="Node2D" unique_id=1337881228]
 texture_filter = 1
+script = ExtResource("1_h7xu0")
 
 [node name="mapa" type="StaticBody2D" parent="." unique_id=1694425938]
 position = Vector2(959, 325)
@@ -28,24 +31,25 @@ metadata/_edit_lock_ = true
 [node name="Apariencia" type="Sprite2D" parent="mapa" unique_id=547083231]
 position = Vector2(623.00006, 159.25002)
 scale = Vector2(0.82395834, 0.7511718)
-texture = ExtResource("1_58ajw")
+texture = ExtResource("1_djuao")
 
 [node name="Suelo" type="CollisionShape2D" parent="mapa" unique_id=131395216]
+texture_filter = 1
 position = Vector2(623.375, 508.5)
 shape = SubResource("RectangleShape2D_itb0o")
 
 [node name="AutoObstaculo" parent="." unique_id=1844083003 instance=ExtResource("2_y0iap")]
-position = Vector2(754, 616)
+position = Vector2(753, 589)
 collision_layer = 7
 
 [node name="Bateria" parent="." unique_id=2129517322 instance=ExtResource("3_hhkdk")]
 position = Vector2(2147, 665)
 
 [node name="Bateria2" parent="." unique_id=310807738 instance=ExtResource("3_hhkdk")]
-position = Vector2(1858, 665)
+position = Vector2(2274, 599)
 
 [node name="Bateria3" parent="." unique_id=1521091984 instance=ExtResource("3_hhkdk")]
-position = Vector2(333, 660)
+position = Vector2(388, 88)
 
 [node name="Bateria4" parent="." unique_id=262648622 instance=ExtResource("3_hhkdk")]
 position = Vector2(1155, 662)
@@ -58,8 +62,11 @@ ui_control = NodePath("../CanvasLayer/UI")
 [node name="Terminal" parent="." unique_id=1092223480 instance=ExtResource("5_sm36x")]
 position = Vector2(1490, 637)
 
+[node name="Area2D" parent="Terminal" unique_id=1844069839 instance=ExtResource("6_djuao")]
+position = Vector2(1, 25)
+
 [node name="Auto" parent="." unique_id=2022586281 instance=ExtResource("7_0w02a")]
-position = Vector2(1505, 611)
+position = Vector2(1786, 524)
 collision_layer = 7
 
 [node name="PlayerManager" parent="." unique_id=1680986880 instance=ExtResource("7_ekfh6")]

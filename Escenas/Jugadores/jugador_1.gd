@@ -4,9 +4,12 @@ extends CharacterBody2D
 @export var player_id: int = 1
 @export var fuerza_empuje: float = 80.0 # Fuerza para mover objetos pesados (RigidBody2D)
 
-# Referencias a baterías
-var bateria_cercana: Area2D = null    # Batería en el suelo o en la espalda de otro jugador cerca
-var bateria_equipada: Area2D = null   # Batería que este jugador lleva encima
+# Referencias a baterías (Cambiado de Area2D a RigidBody2D)
+var bateria_cercana: RigidBody2D = null    
+var bateria_equipada: RigidBody2D = null
+
+var cargador_cercano: Area2D = null
+var colectivo_cercano: Area2D = null # La usaremos para el final
 # Esta variable la asigna dinámicamente el PlayerManager para P3 y P4
 var device_id: int = -1
 
@@ -109,9 +112,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("p1_interactuar"):
 		return
 
-	# CASO 1: Si ya lleva una batería, la suelta
+	# CASO 1: Si ya lleva una batería, la suelta o la pone en el cargador
 	if bateria_equipada != null:
-		bateria_equipada.ser_soltada()
+		if cargador_cercano != null and cargador_cercano.puede_recibir():
+			# Si estamos en el cargador, se la entregamos
+			cargador_cercano.recibir_bateria(self, bateria_equipada)
+		else:
+			# Si no hay cargador, la tira al piso normalmente
+			bateria_equipada.ser_soltada()
+		
 		get_viewport().set_input_as_handled()
 		return
 

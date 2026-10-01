@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxa8wg5pb21xi"
-path="res://.godot/imported/AutoObstaculo.png-cc292f9caef643d7f55996f0ab21c370.ctex"
+uid="uid://ba4eehd4wcxi7"
+path="res://.godot/imported/AutoObjeto.png-10a70bd47bcc4745bbe24a342aee152f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/AutoObstaculo.png"
-dest_files=["res://.godot/imported/AutoObstaculo.png-cc292f9caef643d7f55996f0ab21c370.ctex"]
+source_file="res://Sprites/Auto movible/AutoObjeto.png"
+dest_files=["res://.godot/imported/AutoObjeto.png-10a70bd47bcc4745bbe24a342aee152f.ctex"]
 
 [params]
 
