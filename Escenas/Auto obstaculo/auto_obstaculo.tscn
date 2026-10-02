@@ -11,10 +11,10 @@ metadata/_edit_group_ = true
 
 [node name="Apariencia" type="Sprite2D" parent="." unique_id=1876268338]
 material = SubResource("ShaderMaterial_itb0o")
-scale = Vector2(0.31877112, 0.3103157)
+scale = Vector2(0.5776494, 0.5452368)
 texture = ExtResource("1_e50nw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=107206273]
-position = Vector2(-4.181232, -2.926612)
-scale = Vector2(11.905383, 14.033833)
+position = Vector2(-8.487169, -4.7431602)
+scale = Vector2(21.762688, 24.44603)
 polygon = PackedVector2Array(21.392101, 8.452011, 21.23004, 4.1445637, 18.820925, 1.3337032, 11.290276, 0.3755471, 4.2135954, -3.434887, -4.7538004, -3.973318, -11.93852, -3.9319, -18.95258, 1.1154757, -20.433367, 3.5159783, -21.02568, 8.36063)

@@ -75,5 +75,3 @@ func _alternar_colision(desactivar: bool) -> void:
 
 func establecer_estado(esta_buena: bool) -> void:
 	funciona = esta_buena
-	if not funciona:
-		modulate = Color(0.8, 0.8, 0.8)

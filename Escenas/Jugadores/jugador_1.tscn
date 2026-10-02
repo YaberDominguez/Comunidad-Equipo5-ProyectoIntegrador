@@ -253,7 +253,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 20.0
+"speed": 40.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -501,8 +501,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjp3j"]
-radius = 26.0
-height = 203.0
+radius = 60.0
+height = 339.0
 
 [node name="Jugador1" type="CharacterBody2D" unique_id=573316338]
 collision_layer = 130
@@ -511,7 +511,7 @@ script = ExtResource("1_e31do")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1501088884]
 texture_filter = 1
-scale = Vector2(0.1953125, 0.28177083)
+scale = Vector2(0.39986977, 0.46028647)
 sprite_frames = SubResource("SpriteFrames_88uyn")
 animation = &"idle"
 autoplay = "idle"

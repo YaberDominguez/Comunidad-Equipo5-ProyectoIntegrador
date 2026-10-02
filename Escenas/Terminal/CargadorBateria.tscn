@@ -18,9 +18,9 @@ tex_correcta = ExtResource("4_x1jca")
 tex_quemada = ExtResource("5_fiapo")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=594505235]
-scale = Vector2(0.080221035, 0.08183903)
+scale = Vector2(0.114043444, 0.12849249)
 texture = ExtResource("1_jqw55")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971973500]
-position = Vector2(3, -55.5)
+position = Vector2(4, -31)
 shape = SubResource("RectangleShape2D_itb0o")

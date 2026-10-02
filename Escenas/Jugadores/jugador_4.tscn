@@ -281,7 +281,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oexnn"]
-size = Vector2(73, 84)
+size = Vector2(118, 130)
 
 [node name="Jugador4" type="CharacterBody2D" unique_id=269301176]
 collision_layer = 130
@@ -290,12 +290,11 @@ script = ExtResource("1_dys6m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1811898583]
 texture_filter = 1
-position = Vector2(8, 0)
-scale = Vector2(3, 3)
+scale = Vector2(4.15625, 4.40625)
 sprite_frames = SubResource("SpriteFrames_88uyn")
 animation = &"empujar"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1247201282]
-position = Vector2(5.5, 6)
+position = Vector2(6, -1)
 shape = SubResource("RectangleShape2D_oexnn")

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7dghquyhnkn1" path="res://Sprites/Baterias/batería.png" id="2_rjp3j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dgpgu"]
-size = Vector2(46, 30)
+size = Vector2(144, 97)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xvw3q"]
 radius = 113.0
@@ -18,12 +18,11 @@ lock_rotation = true
 script = ExtResource("1_hr6es")
 
 [node name="Apariencia" type="Sprite2D" parent="." unique_id=1438606312]
-position = Vector2(1.4999995, 1.5000005)
-scale = Vector2(0.038912907, 0.04222451)
+scale = Vector2(0.117974065, 0.13594232)
 texture = ExtResource("2_rjp3j")
 
 [node name="Colision fisica" type="CollisionShape2D" parent="." unique_id=1529753341]
-position = Vector2(2, 2)
+position = Vector2(-1, 4.5)
 shape = SubResource("RectangleShape2D_dgpgu")
 
 [node name="Area de deteccion" type="Area2D" parent="." unique_id=1264227453]

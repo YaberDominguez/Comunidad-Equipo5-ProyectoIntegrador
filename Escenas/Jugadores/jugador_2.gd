@@ -13,8 +13,8 @@ var colectivo_cercano: Area2D = null # La usaremos para el final
 # Esta variable la asigna dinámicamente el PlayerManager para P3 y P4
 var device_id: int = -1
 
-var velocidad := 200.0
-var fuerza_salto := -600.0
+var velocidad := 600.0
+var fuerza_salto := -1000.0
 var vida := 100
 var ultima_direccion := Vector2(1, 0)
 
@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Detecta si se presionó la acción global "Interactuar"
-	if not event.is_action_pressed("p1_interactuar"):
+	if not event.is_action_pressed("p2_interactuar"):
 		return
 
 	# CASO 1: Si ya lleva una batería, la suelta o la pone en el cargador
