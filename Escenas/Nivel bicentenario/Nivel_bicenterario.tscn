@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bgnxm7jruyarf" path="res://Escenas/Auto obstaculo/auto_obstaculo.tscn" id="2_y0iap"]
 [ext_resource type="PackedScene" uid="uid://ro3sgr855sii" path="res://Escenas/Bateria/bateria.tscn" id="3_hhkdk"]
 [ext_resource type="PackedScene" uid="uid://k3juewth2c1g" path="res://Escenas/Combi/combi.tscn" id="4_8idku"]
-[ext_resource type="PackedScene" uid="uid://ddj71cnmnbf40" path="res://Escenas/Terminal/terminal.tscn" id="5_sm36x"]
 [ext_resource type="PackedScene" uid="uid://c5ej8ipj1m52b" path="res://Escenas/Terminal/CargadorBateria.tscn" id="6_djuao"]
 [ext_resource type="PackedScene" uid="uid://cxr5kikjd0far" path="res://Escenas/Jugadores/jugador_1.tscn" id="6_p8jl7"]
 [ext_resource type="PackedScene" uid="uid://by4lme56r2bl8" path="res://Escenas/Auto/auto.tscn" id="7_0w02a"]
@@ -59,6 +58,9 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mapa/Limite Derecho" unique_id=598941645]
 shape = SubResource("RectangleShape2D_j51hw")
 
+[node name="Terminal" parent="." unique_id=1844069839 instance=ExtResource("6_djuao")]
+position = Vector2(6037, 1760)
+
 [node name="AutoObstaculo" parent="." unique_id=1844083003 instance=ExtResource("2_y0iap")]
 position = Vector2(2415, 1855)
 collision_layer = 7
@@ -70,7 +72,7 @@ position = Vector2(9576, 1255)
 position = Vector2(9056, 1314)
 
 [node name="Bateria3" parent="." unique_id=1521091984 instance=ExtResource("3_hhkdk")]
-position = Vector2(3773, 1579)
+position = Vector2(4056, 1675)
 
 [node name="Bateria4" parent="." unique_id=262648622 instance=ExtResource("3_hhkdk")]
 position = Vector2(1409, 1493)
@@ -78,17 +80,10 @@ position = Vector2(1409, 1493)
 [node name="Combi" parent="." unique_id=1750001952 node_paths=PackedStringArray("ui_control") instance=ExtResource("4_8idku")]
 position = Vector2(11467, 1786)
 scale = Vector2(2, 2)
-ui_control = NodePath("../Tutorial/UI")
-
-[node name="Terminal" parent="." unique_id=1092223480 instance=ExtResource("5_sm36x")]
-position = Vector2(6099, 1971)
-metadata/_edit_group_ = true
-
-[node name="Area2D" parent="Terminal" unique_id=1844069839 instance=ExtResource("6_djuao")]
-position = Vector2(1, 25)
+ui_control = NodePath("../Layer/UI")
 
 [node name="Auto" parent="." unique_id=2022586281 instance=ExtResource("7_0w02a")]
-position = Vector2(5885, 1753)
+position = Vector2(6042, 1766)
 collision_layer = 7
 
 [node name="PlayerManager" parent="." unique_id=1680986880 instance=ExtResource("7_ekfh6")]
@@ -120,6 +115,6 @@ limit_top = 361
 limit_right = 12026
 limit_bottom = 2784
 
-[node name="Tutorial" type="CanvasLayer" parent="." unique_id=396915978]
+[node name="Layer" type="CanvasLayer" parent="." unique_id=396915978]
 
-[node name="UI" parent="Tutorial" unique_id=1962916398 instance=ExtResource("9_xskn7")]
+[node name="UI" parent="Layer" unique_id=1962916398 instance=ExtResource("9_xskn7")]

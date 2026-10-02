@@ -1,26 +1,25 @@
 [gd_scene format=3 uid="uid://c5ej8ipj1m52b"]
 
-[ext_resource type="Texture2D" uid="uid://dvinib5m102ww" path="res://Sprites/Cargador bateria/cargador VACÍO.png" id="1_jqw55"]
 [ext_resource type="Script" uid="uid://c0tkjhrrkhcw0" path="res://Escenas/Terminal/cargador_bateria.gd" id="1_xk0a4"]
-[ext_resource type="Texture2D" uid="uid://cb0oepuufnq5l" path="res://Sprites/Cargador bateria/batería neutral.png" id="3_2vueb"]
-[ext_resource type="Texture2D" uid="uid://b1gcl1lk5o5yh" path="res://Sprites/Cargador bateria/batería correcta.png" id="4_x1jca"]
-[ext_resource type="Texture2D" uid="uid://cn03yw70e3wtp" path="res://Sprites/Cargador bateria/batería quemada.png" id="5_fiapo"]
+[ext_resource type="Texture2D" uid="uid://dx4h40rsktqml" path="res://Sprites/Terminal/terminal+cargador vacío.png" id="2_2vueb"]
+[ext_resource type="Texture2D" uid="uid://cjdavr2dl2ufl" path="res://Sprites/Terminal/terminal+cargador neutral.png" id="3_x1jca"]
+[ext_resource type="Texture2D" uid="uid://darx2jo1asndq" path="res://Sprites/Terminal/terminal+ cargador positivo.png" id="4_2vueb"]
+[ext_resource type="Texture2D" uid="uid://cbf03621eit7b" path="res://Sprites/Terminal/terminal+cargador quemado.png" id="5_x1jca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
-size = Vector2(180, 195)
+size = Vector2(475, 487.5)
 
-[node name="Area2D" type="Area2D" unique_id=1844069839]
+[node name="Terminal" type="Area2D" unique_id=1844069839]
 collision_mask = 3
 script = ExtResource("1_xk0a4")
-tex_vacio = ExtResource("1_jqw55")
-tex_neutral = ExtResource("3_2vueb")
-tex_correcta = ExtResource("4_x1jca")
-tex_quemada = ExtResource("5_fiapo")
+tex_vacio = ExtResource("2_2vueb")
+tex_neutral = ExtResource("3_x1jca")
+tex_correcta = ExtResource("4_2vueb")
+tex_quemada = ExtResource("5_x1jca")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=594505235]
-scale = Vector2(0.114043444, 0.12849249)
-texture = ExtResource("1_jqw55")
+scale = Vector2(2.671372, 2.376683)
+texture = ExtResource("2_2vueb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971973500]
-position = Vector2(4, -31)
 shape = SubResource("RectangleShape2D_itb0o")

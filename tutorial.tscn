@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c2giy7c8kuvq6"]
+
+[ext_resource type="Script" uid="uid://bi5pyjlt1lney" path="res://tutorial.gd" id="1_7n6eb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
+size = Vector2(592, 353)
+
+[node name="Tutorial" type="Area2D" unique_id=1688002813]
+script = ExtResource("1_7n6eb")
+
+[node name="PromptUI" type="Label" parent="." unique_id=1069443612]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=330232627]
+position = Vector2(286, 166.5)
+shape = SubResource("RectangleShape2D_itb0o")

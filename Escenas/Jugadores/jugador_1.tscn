@@ -519,3 +519,9 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=467481141]
 position = Vector2(1, 4.5)
 shape = SubResource("CapsuleShape2D_rjp3j")
+
+[node name="CartelTutorial" type="Label" parent="." unique_id=1248198272]
+offset_left = -130.0
+offset_top = -243.0
+offset_right = 132.0
+offset_bottom = -178.0

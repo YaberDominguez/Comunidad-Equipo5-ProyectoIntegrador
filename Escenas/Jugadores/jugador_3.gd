@@ -14,7 +14,7 @@ var colectivo_cercano: Area2D = null # La usaremos para el final
 var device_id: int = -1
 
 var velocidad := 600.0
-var fuerza_salto := -1000.0
+var fuerza_salto := -600.0
 var vida := 100
 var ultima_direccion := Vector2(1, 0)
 
@@ -106,9 +106,18 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("run")
 		else:
 			$AnimatedSprite2D.play("idle")
+var esperando_accion: String = ""
+
+func mostrar_ayuda(texto: String, accion: String):
+	$CartelTutorial.text = texto
+	$CartelTutorial.show()
+	esperando_accion = accion
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Detecta si se presionó la acción global "Interactuar"
+	if esperando_accion != "" and event.is_action_pressed(esperando_accion):
+		$CartelTutorial.hide()
+		esperando_accion = "" # Ya lo completó
 	if not event.is_action_pressed("p1_interactuar"):
 		return
 

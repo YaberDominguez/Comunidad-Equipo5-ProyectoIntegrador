@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://djgpb436647wy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
+
+[node name="Tutorial" type="Area2D" unique_id=1688002813]
+
+[node name="PromptUI" type="Label" parent="." unique_id=1069443612]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=330232627]
+shape = SubResource("RectangleShape2D_itb0o")
