@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://46rw3x464cc2" path="res://Escenas/Jugadores/jugador_3.tscn" id="9_v1xek"]
 [ext_resource type="PackedScene" uid="uid://df7segn6o7irq" path="res://Escenas/UI/ui.tscn" id="9_xskn7"]
 [ext_resource type="PackedScene" uid="uid://nfsyet2fm3wv" path="res://Escenas/Jugadores/jugador_4.tscn" id="10_xskn7"]
+[ext_resource type="PackedScene" uid="uid://c2giy7c8kuvq6" path="res://tutorial.tscn" id="15_h7xu0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
 size = Vector2(12025.8125, 741.25)
@@ -61,8 +62,8 @@ shape = SubResource("RectangleShape2D_j51hw")
 [node name="Terminal" parent="." unique_id=1844069839 instance=ExtResource("6_djuao")]
 position = Vector2(6037, 1760)
 
-[node name="AutoObstaculo" parent="." unique_id=1844083003 instance=ExtResource("2_y0iap")]
-position = Vector2(2415, 1855)
+[node name="AutoObstaculo" parent="." unique_id=1844083003 groups=["auto_obstaculo"] instance=ExtResource("2_y0iap")]
+position = Vector2(3664, 1852)
 collision_layer = 7
 
 [node name="Bateria" parent="." unique_id=2129517322 instance=ExtResource("3_hhkdk")]
@@ -72,10 +73,10 @@ position = Vector2(9576, 1255)
 position = Vector2(9056, 1314)
 
 [node name="Bateria3" parent="." unique_id=1521091984 instance=ExtResource("3_hhkdk")]
-position = Vector2(4056, 1675)
+position = Vector2(1564, 1705)
 
 [node name="Bateria4" parent="." unique_id=262648622 instance=ExtResource("3_hhkdk")]
-position = Vector2(1409, 1493)
+position = Vector2(1195, 1557)
 
 [node name="Combi" parent="." unique_id=1750001952 node_paths=PackedStringArray("ui_control") instance=ExtResource("4_8idku")]
 position = Vector2(11467, 1786)
@@ -118,3 +119,25 @@ limit_bottom = 2784
 [node name="Layer" type="CanvasLayer" parent="." unique_id=396915978]
 
 [node name="UI" parent="Layer" unique_id=1962916398 instance=ExtResource("9_xskn7")]
+
+[node name="Tutorial_interactuar" parent="." unique_id=1688002813 instance=ExtResource("15_h7xu0")]
+position = Vector2(1366, 1389)
+collision_mask = 3
+mensaje_largo = "Agarra las baterias y objetos para ganar puntos"
+
+[node name="Tutorial_salto" parent="." unique_id=1309169026 instance=ExtResource("15_h7xu0")]
+position = Vector2(3875, 1400)
+accion_tutorial = "saltar"
+texto_tutorial = "¡Salta para pasar el obstaculo!!"
+mensaje_largo = "Utiliza el salto para pasar obstaculos y subir plataformas"
+
+[node name="Tutorial_auto" parent="." unique_id=69032046 instance=ExtResource("15_h7xu0")]
+position = Vector2(6471, 1402)
+mensaje_largo = "Este auto parece muy pesado para ser movido por una sola persona"
+
+[node name="Tutorial_bondi" parent="." unique_id=890173713 instance=ExtResource("15_h7xu0")]
+position = Vector2(11527, 1401)
+mensaje_largo = "El colectivo necesita una nueva bateria para funcionar"
+offset_mensaje = Vector2(-12, 0)
+
+[connection signal="body_entered" from="Tutorial_interactuar" to="Tutorial_interactuar" method="_on_body_entered"]

@@ -13,7 +13,16 @@ func _ready() -> void:
 	area_deteccion.body_entered.connect(_on_body_entered)
 	area_deteccion.body_exited.connect(_on_body_exited)
 
-
+func _process(delta: float) -> void:
+	# Si la batería tiene un dueño, actualizamos de qué lado del cuerpo está
+	if duenio_actual != null:
+		var distancia_manos = 100.0 # <-- Ajustá este número para que quede justo en la mano
+		
+		# Leemos la variable que armaste en el jugador
+		if duenio_actual.ultima_direccion.x < 0:
+			position.x = -distancia_manos # Mira a la izquierda
+		else:
+			position.x = distancia_manos  # Mira a la derecha
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("jugador") and body != duenio_actual:
 		if "bateria_cercana" in body:
@@ -43,7 +52,9 @@ func ser_agarrada_por(nuevo_duenio: CharacterBody2D) -> void:
 	_alternar_colision(true)
 
 	reparent(nuevo_duenio)
-	position = Vector2(0, -20) 
+	
+	z_index = 10 # <-- Esto hace que se dibuje POR ENCIMA del personaje
+	position.y = -10 # <-- Altura de la cintura/pecho. (Ajustá este número si la querés más arriba o abajo)
 	rotation = 0 # La enderezamos por si cayó torcida
 
 
@@ -65,7 +76,13 @@ func ser_soltada() -> void:
 	
 	# 2. Reactivamos colisiones físicas con el suelo
 	_alternar_colision(false)
-
+# 1. Descongelamos las físicas para que vuelva a actuar la gravedad
+	freeze = false
+	
+	# 2. Reactivamos colisiones físicas con el suelo
+	_alternar_colision(false)
+	
+	z_index = 0 # <-- Le devolvemos el z_index normal para que no quede superpuesta mágicamente a otras cosas en el piso
 
 func _alternar_colision(desactivar: bool) -> void:
 	# Solo apagamos el CollisionShape2D principal (el del suelo), no el del Area2D

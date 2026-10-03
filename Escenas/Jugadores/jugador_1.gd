@@ -28,6 +28,7 @@ const MARGEN_EMPUJE := 0.15 # Tolerancia de 0.15s para que la animación no parp
 
 func _ready() -> void:
 	add_to_group("jugador")
+	$CartelTutorial.hide()
 
 
 func _physics_process(delta: float) -> void:
@@ -108,11 +109,31 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("idle")
 var esperando_accion: String = ""
 
-func mostrar_ayuda(texto: String, accion: String):
-	$CartelTutorial.text = texto
+func mostrar_ayuda(texto: String, accion_base: String):
+	var accion_real = "p" + str(player_id) + "_" + accion_base
+	esperando_accion = accion_real
+	
+	var nombre_boton = "Tecla" # Por si falla, muestra esto
+	
+	if player_id <= 2:
+		# Verifica que la acción exista en el Input Map
+		if InputMap.has_action(accion_real):
+			var eventos = InputMap.action_get_events(accion_real)
+			if eventos.size() > 0:
+				# Agarra la tecla y le saca la basura de texto extra de Godot 4
+				nombre_boton = eventos[0].as_text().get_slice(" (", 0)
+		else:
+			print("❌ ERROR: No encuentro la acción '", accion_real, "' en tu Input Map. Revisá Proyecto -> Configuración del Proyecto -> Mapa de Entrada.")
+	else:
+		if accion_base == "saltar": nombre_boton = "Botón A"
+		elif accion_base == "interactuar": nombre_boton = "Botón X"
+	
+	$CartelTutorial.text = "[" + nombre_boton + "] " + texto
 	$CartelTutorial.show()
-	esperando_accion = accion
 
+func apagar_ayuda():
+	$CartelTutorial.hide()
+	esperando_accion = ""
 func _unhandled_input(event: InputEvent) -> void:
 	# Detecta si se presionó la acción global "Interactuar"
 	if esperando_accion != "" and event.is_action_pressed(esperando_accion):
