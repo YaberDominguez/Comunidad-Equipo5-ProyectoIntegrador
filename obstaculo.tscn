@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c0ohrjpwubdyr"]
+
+[ext_resource type="Texture2D" uid="uid://c2f2bm58fsd65" path="res://Sprites/Platafornas/obstáculo_tubería.png" id="1_phkyr"]
+[ext_resource type="Texture2D" uid="uid://172xkg5qfcic" path="res://Sprites/Platafornas/obstáculo_escaleras.png" id="2_61ayu"]
+[ext_resource type="PackedScene" uid="uid://dq2353ue0108l" path="res://Escenas/Barril/barril.tscn" id="3_61ayu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyn"]
+size = Vector2(201.75, 596.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trkv8"]
+size = Vector2(207, 599)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijngp"]
+size = Vector2(1175, 209)
+
+[node name="Obstaculo" type="StaticBody2D" unique_id=138108629]
+texture_filter = 1
+
+[node name="Base" type="Sprite2D" parent="." unique_id=770332200]
+position = Vector2(719.75, -332.25)
+scale = Vector2(2.8819952, 3.7727273)
+texture = ExtResource("2_61ayu")
+
+[node name="Columna derecha" type="Sprite2D" parent="." unique_id=1857464109]
+position = Vector2(1177.0001, -92)
+scale = Vector2(0.38593116, 0.85871285)
+texture = ExtResource("1_phkyr")
+
+[node name="Colision derecha" type="CollisionShape2D" parent="." unique_id=1846254082]
+position = Vector2(1177.125, 63.625)
+shape = SubResource("RectangleShape2D_88uyn")
+
+[node name="Columna izquierda" type="Sprite2D" parent="." unique_id=913948397]
+position = Vector2(261, -77.18752)
+scale = Vector2(0.3691549, 0.8527276)
+texture = ExtResource("1_phkyr")
+
+[node name="Colision izquierda" type="CollisionShape2D" parent="." unique_id=644101892]
+position = Vector2(268, 68.5)
+shape = SubResource("RectangleShape2D_trkv8")
+
+[node name="Barril primer escalon" parent="." unique_id=609586226 instance=ExtResource("3_61ayu")]
+position = Vector2(-76, 213)
+
+[node name="Barril segundo escalon" parent="." unique_id=1595032612 instance=ExtResource("3_61ayu")]
+position = Vector2(-469, 215)
+
+[node name="Barril" parent="." unique_id=2008608791 instance=ExtResource("3_61ayu")]
+position = Vector2(-76, 15)
+
+[node name="Colision base" type="CollisionShape2D" parent="." unique_id=183031117]
+position = Vector2(722.5, -334.5)
+shape = SubResource("RectangleShape2D_ijngp")
+
+[node name="Barril segundo escalon2" parent="." unique_id=1034655159 instance=ExtResource("3_61ayu")]
+position = Vector2(2016, 206)
+
+[node name="Barril primer escalon2" parent="." unique_id=824788669 instance=ExtResource("3_61ayu")]
+position = Vector2(1573, 203)
+
+[node name="Barril2" parent="." unique_id=1459110173 instance=ExtResource("3_61ayu")]
+position = Vector2(1573, 5)

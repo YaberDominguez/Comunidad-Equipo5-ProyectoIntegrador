@@ -14,7 +14,7 @@ var colectivo_cercano: Area2D = null # La usaremos para el final
 var device_id: int = -1
 
 var velocidad := 600.0
-var fuerza_salto := -600.0
+var fuerza_salto := -800.0
 var vida := 100
 var ultima_direccion := Vector2(1, 0)
 

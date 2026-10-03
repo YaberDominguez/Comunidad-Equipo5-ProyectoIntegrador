@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bc6dd2ibvlbi0"]
 
-[ext_resource type="Texture2D" uid="uid://ch0yiygcty07g" path="res://cajas.png" id="1_kmdy7"]
+[ext_resource type="Texture2D" uid="uid://ch0yiygcty07g" path="res://Sprites/Cajas/cajas.png" id="1_kmdy7"]
 
-[node name="Cajas" type="StaticBody2D" unique_id=1935975437]
+[node name="Obstaculo Cajas" type="StaticBody2D" unique_id=1935975437]
 disable_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1890770332]

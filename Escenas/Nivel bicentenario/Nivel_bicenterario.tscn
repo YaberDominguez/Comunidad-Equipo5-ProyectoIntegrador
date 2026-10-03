@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bgnxm7jruyarf" path="res://Escenas/Auto obstaculo/auto_obstaculo.tscn" id="2_y0iap"]
 [ext_resource type="PackedScene" uid="uid://ro3sgr855sii" path="res://Escenas/Bateria/bateria.tscn" id="3_hhkdk"]
 [ext_resource type="PackedScene" uid="uid://k3juewth2c1g" path="res://Escenas/Combi/combi.tscn" id="4_8idku"]
+[ext_resource type="PackedScene" uid="uid://c0ohrjpwubdyr" path="res://obstaculo.tscn" id="5_n8a3x"]
 [ext_resource type="PackedScene" uid="uid://c5ej8ipj1m52b" path="res://Escenas/Terminal/CargadorBateria.tscn" id="6_djuao"]
 [ext_resource type="PackedScene" uid="uid://cxr5kikjd0far" path="res://Escenas/Jugadores/jugador_1.tscn" id="6_p8jl7"]
 [ext_resource type="PackedScene" uid="uid://by4lme56r2bl8" path="res://Escenas/Auto/auto.tscn" id="7_0w02a"]
@@ -17,13 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://c2giy7c8kuvq6" path="res://tutorial.tscn" id="15_h7xu0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
-size = Vector2(16073.8125, 737)
+size = Vector2(22680, 923.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcqjd"]
-size = Vector2(122, 2051)
+size = Vector2(122, 2550)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j51hw"]
-size = Vector2(155, 2060)
+size = Vector2(141.5, 2610)
 
 [node name="Nivel_Bicentenario" type="Node2D" unique_id=1337881228]
 texture_filter = 1
@@ -33,13 +34,13 @@ script = ExtResource("1_h7xu0")
 position = Vector2(959, 325)
 
 [node name="Apariencia" type="Sprite2D" parent="mapa" unique_id=547083231]
-position = Vector2(7100, 1098)
-scale = Vector2(3.1341145, 2.1910157)
+position = Vector2(10399.334, 1443.9199)
+scale = Vector2(4.422917, 2.7232003)
 texture = ExtResource("2_h7xu0")
 
 [node name="Suelo" type="CollisionShape2D" parent="mapa" unique_id=131395216]
 texture_filter = 1
-position = Vector2(7084, 2141.5)
+position = Vector2(10409, 2726.25)
 shape = SubResource("RectangleShape2D_itb0o")
 
 [node name="Limiteizquierdo" type="StaticBody2D" parent="mapa" unique_id=1225001936]
@@ -47,28 +48,32 @@ position = Vector2(-980, 717)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mapa/Limiteizquierdo" unique_id=1599749160]
-position = Vector2(0, 32.5)
+position = Vector2(0, 282)
 shape = SubResource("RectangleShape2D_mcqjd")
 
 [node name="Limite Derecho" type="StaticBody2D" parent="mapa" unique_id=532066702]
-position = Vector2(15174, 738)
+position = Vector2(21667, 1234)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mapa/Limite Derecho" unique_id=598941645]
+position = Vector2(6.75, -275)
 shape = SubResource("RectangleShape2D_j51hw")
 
 [node name="Terminal" parent="." unique_id=1844069839 instance=ExtResource("6_djuao")]
-position = Vector2(8012, 1809)
+position = Vector2(11242, 2321)
 
 [node name="AutoObstaculo" parent="." unique_id=1844083003 groups=["auto_obstaculo"] instance=ExtResource("2_y0iap")]
-position = Vector2(4210, 1879)
+position = Vector2(3446, 2431)
 collision_layer = 7
 
+[node name="Obstaculo" parent="AutoObstaculo" unique_id=138108629 instance=ExtResource("5_n8a3x")]
+position = Vector2(2589, -190)
+
 [node name="Bateria" parent="." unique_id=2129517322 instance=ExtResource("3_hhkdk")]
-position = Vector2(9576, 1255)
+position = Vector2(15774, 1863)
 
 [node name="Bateria2" parent="." unique_id=310807738 instance=ExtResource("3_hhkdk")]
-position = Vector2(9056, 1314)
+position = Vector2(7183, 1739)
 
 [node name="Bateria3" parent="." unique_id=1521091984 instance=ExtResource("3_hhkdk")]
 position = Vector2(1564, 1705)
@@ -77,12 +82,12 @@ position = Vector2(1564, 1705)
 position = Vector2(1195, 1557)
 
 [node name="Combi" parent="." unique_id=1750001952 node_paths=PackedStringArray("ui_control") instance=ExtResource("4_8idku")]
-position = Vector2(15505, 1831)
+position = Vector2(21822, 2368)
 scale = Vector2(2, 2)
 ui_control = NodePath("../Layer/UI")
 
 [node name="Auto" parent="." unique_id=2022586281 instance=ExtResource("7_0w02a")]
-position = Vector2(7993, 1821)
+position = Vector2(11334, 2325)
 collision_layer = 7
 
 [node name="PlayerManager" parent="." unique_id=1680986880 instance=ExtResource("7_ekfh6")]
@@ -111,37 +116,37 @@ offset = Vector2(0, -350)
 zoom = Vector2(0.3, 0.3)
 limit_left = 9
 limit_top = 361
-limit_right = 12026
-limit_bottom = 2784
+limit_right = 22438
+limit_bottom = 3481
 
 [node name="Layer" type="CanvasLayer" parent="." unique_id=396915978]
 
 [node name="UI" parent="Layer" unique_id=1962916398 instance=ExtResource("9_xskn7")]
 
 [node name="Tutorial_interactuar" parent="." unique_id=1688002813 instance=ExtResource("15_h7xu0")]
-position = Vector2(1366, 1389)
+position = Vector2(1327, 1964)
 mensaje_largo = "Agarra las baterias y objetos para ganar puntos"
 
 [node name="Tutorial_salto" parent="." unique_id=1309169026 instance=ExtResource("15_h7xu0")]
-position = Vector2(4807, 1454)
+position = Vector2(3719, 1974)
 accion_tutorial = "saltar"
 texto_tutorial = "¡Salta para pasar el obstaculo!!"
 mensaje_largo = "Utiliza el salto para pasar obstaculos y subir plataformas"
 offset_mensaje = Vector2(-800, 0)
 
 [node name="Tutorial_auto" parent="." unique_id=69032046 instance=ExtResource("15_h7xu0")]
-position = Vector2(8250, 1457)
-accion_tutorial = ""
+position = Vector2(11765, 1962)
+accion_tutorial = "derecha"
 texto_tutorial = "¡Mueve el auto!"
 mensaje_largo = "Este auto parece muy pesado para ser movido por una sola persona"
 offset_mensaje = Vector2(-100, 0)
 
 [node name="Tutorial_bondi" parent="." unique_id=890173713 instance=ExtResource("15_h7xu0")]
-position = Vector2(15556, 1436)
-accion_tutorial = ""
+position = Vector2(22063, 2005)
 texto_tutorial = "¡Coloca una nueva bateria!!"
 mensaje_largo = "El colectivo necesita una nueva bateria para funcionar"
 offset_mensaje = Vector2(-12, 0)
+metadata/_edit_group_ = true
 
 [connection signal="body_entered" from="Tutorial_interactuar" to="Tutorial_interactuar" method="_on_body_entered"]
 [connection signal="body_entered" from="Tutorial_salto" to="Tutorial_salto" method="_on_body_entered"]
