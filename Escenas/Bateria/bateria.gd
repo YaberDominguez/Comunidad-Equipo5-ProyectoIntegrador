@@ -1,6 +1,6 @@
 extends RigidBody2D # <-- Cambiado a RigidBody2D
 
-@export var funciona: bool = true
+@export var funciona: bool = false
 var duenio_actual: CharacterBody2D = null
 
 # Referencia al Area2D que pusimos como hijo para detectar jugadores

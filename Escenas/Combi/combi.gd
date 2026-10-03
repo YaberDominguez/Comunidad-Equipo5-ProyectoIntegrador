@@ -1,35 +1,30 @@
 extends Area2D
 
-# Referencia a la UI (puedes asignarla desde el Inspector de Godot)
 @export var ui_control: Control
-
-# Lista para rastrear a los jugadores presentes
 var jugadores_en_zona: Array[CharacterBody2D] = []
-
 
 func _ready() -> void:
 	add_to_group("Combi")
-	
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	# Eliminamos area_entered y area_exited porque la batería ahora es un RigidBody2D
-
 
 # --- DETECCIÓN DE ENTRADAS Y SALIDAS ---
 func _on_body_entered(body: Node2D) -> void:
-	# Si entra un jugador
 	if body.is_in_group("jugador") and body is CharacterBody2D:
 		if not jugadores_en_zona.has(body):
 			jugadores_en_zona.append(body)
 			
 			var requeridos: int = obtener_total_jugadores_activos()
 			print("🚌 Jugador ingresó a la combi (", jugadores_en_zona.size(), "/", requeridos, ")")
-			siguiente_nivel()
+			siguiente_nivel() # Verificamos victoria por si entró con una batería buena en la mano
 			
-	# Si tiran una batería al piso de la combi
 	elif body.is_in_group("Bateria"):
-		print("🚌 Batería detectada en el piso de la combi.")
-		siguiente_nivel()
+		# EL FIX ESTÁ ACÁ: Solo evaluamos victoria si la batería funciona
+		if "funciona" in body and body.funciona:
+			print("🔋 Batería BUENA detectada en el piso de la combi.")
+			siguiente_nivel()
+		else:
+			print("❌ Tiraron una batería ROTA en la combi. No sirve.")
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -42,14 +37,13 @@ func _on_body_exited(body: Node2D) -> void:
 		print("🚌 Batería sacada de la combi.")
 
 
-# --- OPCIÓN B: Cuenta solo a los jugadores con activo == true ---
+# --- JUGADORES ACTIVOS ---
 func obtener_total_jugadores_activos() -> int:
 	var total_activos: int = 0
 	var lista_jugadores: Array = get_tree().get_nodes_in_group("jugador")
 
 	for jugador in lista_jugadores:
 		var esta_activo: bool = false
-		
 		if "activo" in jugador:
 			esta_activo = jugador.activo
 		else:
@@ -64,18 +58,20 @@ func obtener_total_jugadores_activos() -> int:
 # --- VERIFICACIÓN DE VICTORIA ---
 func siguiente_nivel() -> void:
 	var requeridos: int = obtener_total_jugadores_activos()
+	
+	# Condición 1: Que estén todos los jugadores
 	var todos_en_el_area: bool = jugadores_en_zona.size() >= requeridos
 	
 	var tiene_bateria_buena: bool = false
 	
-	# PASO 1: Revisar si algún jugador que está en la combi la tiene en la mano
+	# PASO 1: Revisar si algún jugador que está en la combi la tiene en la mano y ES BUENA
 	for jugador in jugadores_en_zona:
 		if "bateria_equipada" in jugador and jugador.bateria_equipada != null:
 			if "funciona" in jugador.bateria_equipada and jugador.bateria_equipada.funciona:
 				tiene_bateria_buena = true
 				break
 	
-	# PASO 2: Si nadie la tiene en la mano, revisar si la dejaron tirada en el piso
+	# PASO 2: Revisar si dejaron una batería BUENA tirada en el piso de la combi
 	if not tiene_bateria_buena:
 		var cosas_adentro = get_overlapping_bodies()
 		for objeto in cosas_adentro:
@@ -83,12 +79,10 @@ func siguiente_nivel() -> void:
 				tiene_bateria_buena = true
 				break
 
-	# PASO 3: Evaluar si ganaron
+	# PASO 3: Evaluar si ganaron (Ambas condiciones obligatorias)
 	if tiene_bateria_buena and todos_en_el_area:
 		print("🎉 ¡Nivel completado! Guardando datos en ScoreManager...")
-		
-		# Guardamos los jugadores activos en el Autoload
 		ScoreManager.jugadores_activos = requeridos
-
-		# Cambiamos a la escena de resultados
 		get_tree().change_scene_to_file("res://Escenas/PantalladeResultados/pantalla_resultados.tscn")
+	else:
+		print("Faltan jugadores o la batería no sirve/no está.")

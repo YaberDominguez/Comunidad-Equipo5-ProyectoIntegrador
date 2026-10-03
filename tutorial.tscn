@@ -6,6 +6,7 @@
 size = Vector2(1796, 1301)
 
 [node name="Tutorial" type="Area2D" unique_id=1688002813]
+collision_mask = 3
 script = ExtResource("1_7n6eb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=330232627]
@@ -13,14 +14,14 @@ position = Vector2(-391, 0)
 shape = SubResource("RectangleShape2D_itb0o")
 
 [node name="Mensaje" type="Label" parent="." unique_id=72206012]
-offset_left = -1303.0
-offset_top = -855.0
-offset_right = 1269.0
-offset_bottom = -669.0
+offset_left = -1285.0
+offset_top = -639.0
+offset_right = 513.0
+offset_bottom = 1.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 80
 text = "
-Hola mundo
 "
 horizontal_alignment = 1
+autowrap_mode = 2
