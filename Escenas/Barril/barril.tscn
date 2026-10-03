@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dq2353ue0108l"]
+
+[ext_resource type="Texture2D" uid="uid://xmr6v2awe6td" path="res://Sprites/BarrilObstaculo/obstáculo_barril.png" id="1_cg5sr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cg5sr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oexnn"]
+size = Vector2(184, 279)
+
+[node name="Barril" type="StaticBody2D" unique_id=609586226]
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_cg5sr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=171825553]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_cg5sr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1020549637]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_oexnn")

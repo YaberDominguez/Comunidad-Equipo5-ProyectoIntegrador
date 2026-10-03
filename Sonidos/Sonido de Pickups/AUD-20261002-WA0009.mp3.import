@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://do12h72iursdc"
+path="res://.godot/imported/AUD-20261002-WA0009.mp3-1ff4d0b3262149cc1fb137059e22233f.mp3str"
+
+[deps]
+
+source_file="res://Sonidos/Sonido de Pickups/AUD-20261002-WA0009.mp3"
+dest_files=["res://.godot/imported/AUD-20261002-WA0009.mp3-1ff4d0b3262149cc1fb137059e22233f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bc6dd2ibvlbi0"]
+
+[ext_resource type="Texture2D" uid="uid://ch0yiygcty07g" path="res://cajas.png" id="1_kmdy7"]
+
+[node name="Cajas" type="StaticBody2D" unique_id=1935975437]
+disable_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1890770332]
+texture_filter = 1
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("1_kmdy7")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=610472684]
+position = Vector2(361, 127)
+scale = Vector2(1.8, 1.8)
+polygon = PackedVector2Array(-343.48007, 96.89456, -342.48007, 39.89456, -283.48007, 40.89456, -281.48007, -18.105438, -224.48007, -18.105438, -225.48007, -74.10544, -166.48007, -75.10544, -165.48007, -136.10544, -109.48007, -136.10544, -107.48007, -199.10544, -51.480072, -200.10544, -48.480072, 99.89456)
