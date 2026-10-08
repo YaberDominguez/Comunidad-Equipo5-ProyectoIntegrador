@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b12pe3y7rmmp4"]
 
 [ext_resource type="Script" uid="uid://cc0tfnuv1w6ji" path="res://Escenas/Menu principal/menu_principal.gd" id="1_gmcsc"]
+[ext_resource type="AudioStream" uid="uid://b7jvk62ywk6ia" path="res://Sonidos/Musica del menu principal/Arcade Party Frenzy (online-audio-converter.com).mp3" id="2_jag4c"]
 [ext_resource type="Texture2D" uid="uid://btty8jaxate1t" path="res://Sprites/Menu principal/fondo menu.jpg" id="2_ul6ys"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvw3q"]
@@ -45,6 +46,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gmcsc")
 metadata/_edit_use_anchors_ = true
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=1185836079]
+stream = ExtResource("2_jag4c")
+autoplay = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=101148340]
 layout_mode = 1

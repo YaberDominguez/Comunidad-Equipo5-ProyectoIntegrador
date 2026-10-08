@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bqfqjykinv0m1"]
+
+[ext_resource type="Texture2D" uid="uid://bwt56wnfjr18i" path="res://Sprites/Obstaculos/Obstaculos-04.png" id="1_ajj6p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyn"]
+size = Vector2(6, 99.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oexnn"]
+size = Vector2(97, 8)
+
+[node name="Obstaculo04" type="StaticBody2D" unique_id=1725981834]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=435005762]
+texture_filter = 1
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_ajj6p")
+
+[node name="Soporteizquierdo" type="CollisionShape2D" parent="." unique_id=555195519]
+position = Vector2(-29, 4.25)
+shape = SubResource("RectangleShape2D_88uyn")
+
+[node name="Soportederecho" type="CollisionShape2D" parent="." unique_id=964785439]
+position = Vector2(30, 4)
+shape = SubResource("RectangleShape2D_88uyn")
+
+[node name="Basesuperior" type="CollisionShape2D" parent="." unique_id=1127038025]
+position = Vector2(0.5, -49)
+shape = SubResource("RectangleShape2D_oexnn")

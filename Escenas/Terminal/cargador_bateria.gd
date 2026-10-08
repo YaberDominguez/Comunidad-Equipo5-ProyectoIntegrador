@@ -1,13 +1,18 @@
 extends Area2D
 
 # 1. Variables para arrastrar tus PNGs desde el Inspector de Godot
-@export var tex_vacio: Texture2D        # Arrastra "cargador VACÍO.png"
-@export var tex_neutral: Texture2D      # Arrastra "batería neutral.png"
-@export var tex_correcta: Texture2D     # Arrastra "batería correcta.png"
-@export var tex_quemada: Texture2D      # Arrastra "batería quemada.png" (o "batería incorrecta.png")
+@export var tex_vacio: Texture2D       # Arrastra "cargador VACÍO.png"
+@export var tex_neutral: Texture2D     # Arrastra "batería neutral.png"
+@export var tex_correcta: Texture2D    # Arrastra "batería correcta.png"
+@export var tex_quemada: Texture2D     # Arrastra "batería quemada.png" (o "batería incorrecta.png")
 
 # Referencia al Sprite del cargador
 @onready var sprite: Sprite2D = $Sprite2D
+
+# --- REFERENCIAS DE AUDIO ---
+@onready var sfx_evaluando: AudioStreamPlayer2D = $SfxEvaluando
+@onready var sfx_exito: AudioStreamPlayer2D = $SfxExito
+@onready var sfx_fallo: AudioStreamPlayer2D = $SfxFallo
 
 @export var baterias_restantes: int = 4
 var bateria_buena_encontrada: bool = false
@@ -51,8 +56,16 @@ func recibir_bateria(jugador: CharacterBody2D, bateria: RigidBody2D) -> void:
 	# --- ESTADO 1: NEUTRAL (Testeando) ---
 	sprite.texture = tex_neutral
 	
+	# Reproducir sonido de escaneo / evaluación
+	if sfx_evaluando and sfx_evaluando.stream:
+		sfx_evaluando.play()
+	
 	# Le damos 1.5 segundos de suspenso mientras "evalúa" la batería
 	await get_tree().create_timer(1.5).timeout
+	
+	# Detener el sonido de evaluación si sigue sonando
+	if sfx_evaluando and sfx_evaluando.is_playing():
+		sfx_evaluando.stop()
 	
 	# Calculamos las probabilidades
 	var funciona := false
@@ -69,18 +82,21 @@ func recibir_bateria(jugador: CharacterBody2D, bateria: RigidBody2D) -> void:
 		bateria_buena_encontrada = true
 		bateria.establecer_estado(true)
 		
-		# Cambiamos a luz verde
+		# Cambiamos a luz verde y reproducimos sonido de éxito
 		sprite.texture = tex_correcta
+		if sfx_exito and sfx_exito.stream:
+			sfx_exito.play()
+			
 		print("¡Batería funcional encontrada!")
 		
-		# Esperamos medio segundo para que los jugadores vean la luz verde
-		await get_tree().create_timer(3).timeout
+		# Esperamos 3 segundos para que los jugadores vean la luz verde
+		await get_tree().create_timer(3.0).timeout
 		
 		# Escupimos la batería: la volvemos a hacer visible y la soltamos al piso
 		bateria.visible = true
 		bateria.ser_soltada() 
 		
-		# El cargador vuelve a quedar vacío (por si quieren mirarlo, aunque ya no se usa)
+		# El cargador vuelve a quedar vacío
 		sprite.texture = tex_vacio
 		esta_ocupado = false 
 		
@@ -88,15 +104,18 @@ func recibir_bateria(jugador: CharacterBody2D, bateria: RigidBody2D) -> void:
 		# --- ESTADO 3: FRACASO ---
 		bateria.establecer_estado(false)
 		
-		# Cambiamos a luz roja y batería rota
+		# Cambiamos a luz roja y reproducimos sonido de corto/quemado
 		sprite.texture = tex_quemada
+		if sfx_fallo and sfx_fallo.stream:
+			sfx_fallo.play()
+			
 		print("La batería se quemó. Quedan: ", baterias_restantes)
 		
 		# Destruimos la batería física (ya no sirve para nada)
 		bateria.queue_free()
 		
-		# Dejamos la luz roja de error por 2 segundos
-		await get_tree().create_timer(3).timeout
+		# Dejamos la luz roja de error por 3 segundos
+		await get_tree().create_timer(3.0).timeout
 		
 		# Volvemos al estado vacío para que metan otra
 		sprite.texture = tex_vacio

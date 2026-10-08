@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b8aeapnec3qfs" path="res://Escenas/Moneda/moneda.tscn" id="1_6xxbe"]
 [ext_resource type="Texture2D" uid="uid://kylrcg8rwsuj" path="res://Sprites/Juguito/2_Jugo_SpriteSheet.png" id="2_ey46c"]
+[ext_resource type="Script" uid="uid://dkb6q5gq70s0y" path="res://Escenas/Juguito/juguito.gd" id="2_n6qis"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpcu3"]
 atlas = ExtResource("2_ey46c")
@@ -180,17 +181,21 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xxbe"]
-size = Vector2(99, 146)
+size = Vector2(81, 146)
 
 [node name="Juguito" unique_id=979959033 instance=ExtResource("1_6xxbe")]
-valor_moneda = 5
+script = ExtResource("2_n6qis")
+multiplicador_velocidad = 1.5
+duracion_buff = 4.0
+tipo_objeto = "Juguito"
+valor_objeto = 5
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=880906845]
-position = Vector2(-1.9999981, 12.49999)
-scale = Vector2(0.4187069, 0.3361111)
+position = Vector2(-5.9999995, 9.999999)
+scale = Vector2(0.4187069, 0.36851847)
 sprite_frames = SubResource("SpriteFrames_ifsot")
 frame_progress = 0.5863118
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=233394121]
-position = Vector2(-2.5, 8)
+position = Vector2(-3, 1)
 shape = SubResource("RectangleShape2D_6xxbe")

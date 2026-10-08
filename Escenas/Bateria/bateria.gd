@@ -6,6 +6,10 @@ var duenio_actual: CharacterBody2D = null
 # Referencia al Area2D que pusimos como hijo para detectar jugadores
 @onready var area_deteccion: Area2D = $"Area de deteccion" 
 
+# --- AUDIOS DE LA BATERÍA ---
+@onready var sfx_levantar: AudioStreamPlayer2D = $SfxLevantar
+@onready var sfx_tirar: AudioStreamPlayer2D = $SfxTirar
+
 func _ready() -> void:
 	add_to_group("Bateria")
 	
@@ -23,17 +27,16 @@ func _process(delta: float) -> void:
 			position.x = -distancia_manos # Mira a la izquierda
 		else:
 			position.x = distancia_manos  # Mira a la derecha
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("jugador") and body != duenio_actual:
 		if "bateria_cercana" in body:
 			body.bateria_cercana = self
 
-
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("jugador") and "bateria_cercana" in body:
 		if body.bateria_cercana == self:
 			body.bateria_cercana = null
-
 
 func ser_agarrada_por(nuevo_duenio: CharacterBody2D) -> void:
 	if duenio_actual != null:
@@ -57,6 +60,10 @@ func ser_agarrada_por(nuevo_duenio: CharacterBody2D) -> void:
 	position.y = -10 # <-- Altura de la cintura/pecho. (Ajustá este número si la querés más arriba o abajo)
 	rotation = 0 # La enderezamos por si cayó torcida
 
+	# Reproducir sonido de levantar
+	if sfx_levantar and sfx_levantar.stream:
+		sfx_levantar.play()
+
 
 func ser_soltada() -> void:
 	if duenio_actual == null:
@@ -76,17 +83,17 @@ func ser_soltada() -> void:
 	
 	# 2. Reactivamos colisiones físicas con el suelo
 	_alternar_colision(false)
-# 1. Descongelamos las físicas para que vuelva a actuar la gravedad
-	freeze = false
 	
-	# 2. Reactivamos colisiones físicas con el suelo
-	_alternar_colision(false)
-	
-	z_index = 0 # <-- Le devolvemos el z_index normal para que no quede superpuesta mágicamente a otras cosas en el piso
+	z_index = 0 # <-- Le devolvemos el z_index normal
+
+	# Reproducir sonido de tirar/soltar
+	if sfx_tirar and sfx_tirar.stream:
+		sfx_tirar.play()
+
 
 func _alternar_colision(desactivar: bool) -> void:
 	# Solo apagamos el CollisionShape2D principal (el del suelo), no el del Area2D
-	if has_node("CollisionShape2D"):
+	if has_node("Colision fisica"):
 		$"Colision fisica".set_deferred("disabled", desactivar)
 
 

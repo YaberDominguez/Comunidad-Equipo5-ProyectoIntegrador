@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgwxabmc2c28q"]
 
 [ext_resource type="PackedScene" uid="uid://b8aeapnec3qfs" path="res://Escenas/Moneda/moneda.tscn" id="1_w2ars"]
+[ext_resource type="Script" uid="uid://dw4avui41lymx" path="res://Escenas/Milanga/milanga.gd" id="2_a1nxa"]
 [ext_resource type="Texture2D" uid="uid://cpfyjl08i2j0b" path="res://Sprites/Milanga/3_Milanga_SpriteSheet.png" id="2_rtx7x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yf4fn"]
@@ -184,7 +185,11 @@ radius = 20.966955
 height = 115.96706
 
 [node name="Milanga" unique_id=979959033 instance=ExtResource("1_w2ars")]
-valor_moneda = 10
+script = ExtResource("2_a1nxa")
+multiplicador_velocidad = 1.5
+duracion_buff = 3.0
+tipo_objeto = "Milanga"
+valor_objeto = 10
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=880906845]
 sprite_frames = SubResource("SpriteFrames_tqn66")

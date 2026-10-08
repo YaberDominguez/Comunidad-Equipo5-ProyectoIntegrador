@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cst0gv2ynntyq" path="res://Escenas/Bateria/bateria.gd" id="1_hr6es"]
 [ext_resource type="Texture2D" uid="uid://b7dghquyhnkn1" path="res://Sprites/Baterias/batería.png" id="2_rjp3j"]
+[ext_resource type="AudioStream" uid="uid://dbaiij4i56j4w" path="res://Sonidos/Sonidosmundo/levantar-2.mp3.mp3" id="3_1wbaw"]
+[ext_resource type="AudioStream" uid="uid://d3q6mnnxmj7hg" path="res://Sonidos/Sonidosmundo/soltar-1.mp3.mp3" id="4_qheou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dgpgu"]
 size = Vector2(144, 97)
@@ -31,3 +33,11 @@ collision_mask = 3
 [node name="Tamaño deteccion" type="CollisionShape2D" parent="Area de deteccion" unique_id=799837158]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_xvw3q")
+
+[node name="SfxLevantar" type="AudioStreamPlayer2D" parent="." unique_id=482108628]
+stream = ExtResource("3_1wbaw")
+volume_db = 2.0
+
+[node name="SfxTirar" type="AudioStreamPlayer2D" parent="." unique_id=828375612]
+stream = ExtResource("4_qheou")
+volume_db = 2.0

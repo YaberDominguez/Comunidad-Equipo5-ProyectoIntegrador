@@ -16,6 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://df7segn6o7irq" path="res://Escenas/UI/ui.tscn" id="9_xskn7"]
 [ext_resource type="PackedScene" uid="uid://nfsyet2fm3wv" path="res://Escenas/Jugadores/jugador_4.tscn" id="10_xskn7"]
 [ext_resource type="PackedScene" uid="uid://c2giy7c8kuvq6" path="res://tutorial.tscn" id="15_h7xu0"]
+[ext_resource type="PackedScene" uid="uid://b8aeapnec3qfs" path="res://Escenas/Moneda/moneda.tscn" id="17_ncn2i"]
+[ext_resource type="PackedScene" uid="uid://cgwxabmc2c28q" path="res://Escenas/Milanga/milanga.tscn" id="18_w20c7"]
+[ext_resource type="PackedScene" uid="uid://ds31e3t3s5txn" path="res://Escenas/Juguito/juguito.tscn" id="19_nwbah"]
+[ext_resource type="AudioStream" uid="uid://bthejo8co7ce8" path="res://Sonidos/Musica de nivel principal/Urban Funk Rush.mp3" id="20_8xebq"]
+[ext_resource type="PackedScene" uid="uid://r3fsvm07ryya" path="res://Escenas/Obstaculos/obstaculocompleto.tscn" id="21_onls3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
 size = Vector2(22680, 923.5)
@@ -29,6 +34,11 @@ size = Vector2(141.5, 2610)
 [node name="Nivel_Bicentenario" type="Node2D" unique_id=1337881228]
 texture_filter = 1
 script = ExtResource("1_h7xu0")
+
+[node name="MusicaDeFondo" type="AudioStreamPlayer" parent="." unique_id=1547239857]
+stream = ExtResource("20_8xebq")
+volume_db = -14.0
+autoplay = true
 
 [node name="mapa" type="StaticBody2D" parent="." unique_id=1694425938]
 position = Vector2(959, 325)
@@ -69,8 +79,48 @@ collision_layer = 7
 [node name="Obstaculo" parent="AutoObstaculo" unique_id=138108629 instance=ExtResource("5_n8a3x")]
 position = Vector2(2589, -190)
 
+[node name="Obstaculocompleto" parent="." unique_id=102662626 instance=ExtResource("21_onls3")]
+position = Vector2(13959.001, 2411)
+scale = Vector2(2.8, 2.8)
+
+[node name="Pickups" type="Node" parent="." unique_id=2029311468]
+
+[node name="Moneda" parent="Pickups" unique_id=979959033 instance=ExtResource("17_ncn2i")]
+position = Vector2(2173, 2507)
+collision_layer = 130
+collision_mask = 2
+
+[node name="Moneda2" parent="Pickups" unique_id=1832844129 instance=ExtResource("17_ncn2i")]
+position = Vector2(1801, 2470)
+collision_layer = 130
+collision_mask = 2
+
+[node name="Milanga" parent="Pickups" unique_id=1361295716 instance=ExtResource("18_w20c7")]
+position = Vector2(4585, 2442)
+collision_layer = 130
+collision_mask = 2
+duracion_buff = 5.0
+
+[node name="Milanga2" parent="Pickups" unique_id=738739632 instance=ExtResource("18_w20c7")]
+position = Vector2(1925.7814, 2345.0518)
+collision_layer = 130
+collision_mask = 2
+duracion_buff = 5.0
+
+[node name="Juguito" parent="Pickups" unique_id=2075739517 instance=ExtResource("19_nwbah")]
+position = Vector2(5530, 1734)
+collision_layer = 130
+collision_mask = 2
+duracion_buff = 3.0
+
+[node name="Juguito2" parent="Pickups" unique_id=1586151318 instance=ExtResource("19_nwbah")]
+position = Vector2(2741, 2413)
+collision_layer = 130
+collision_mask = 2
+duracion_buff = 3.0
+
 [node name="Bateria" parent="." unique_id=2129517322 instance=ExtResource("3_hhkdk")]
-position = Vector2(15774, 1863)
+position = Vector2(14782.525, 1788.53)
 
 [node name="Bateria2" parent="." unique_id=310807738 instance=ExtResource("3_hhkdk")]
 position = Vector2(7183, 1739)
@@ -81,10 +131,9 @@ position = Vector2(1564, 1705)
 [node name="Bateria4" parent="." unique_id=262648622 instance=ExtResource("3_hhkdk")]
 position = Vector2(1195, 1557)
 
-[node name="Combi" parent="." unique_id=1750001952 node_paths=PackedStringArray("ui_control") instance=ExtResource("4_8idku")]
+[node name="Combi" parent="." unique_id=1750001952 instance=ExtResource("4_8idku")]
 position = Vector2(21822, 2368)
 scale = Vector2(2, 2)
-ui_control = NodePath("../Layer/UI")
 
 [node name="Auto" parent="." unique_id=2022586281 instance=ExtResource("7_0w02a")]
 position = Vector2(11334, 2325)
@@ -114,7 +163,7 @@ fuerza_empuje = 140.0
 position = Vector2(104, 214)
 offset = Vector2(0, -350)
 zoom = Vector2(0.3, 0.3)
-limit_left = 9
+limit_left = 44
 limit_top = 361
 limit_right = 22438
 limit_bottom = 3481

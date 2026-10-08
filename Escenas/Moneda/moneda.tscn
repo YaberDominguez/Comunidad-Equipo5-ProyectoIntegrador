@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqa6utbhw6na4" path="res://Escenas/Moneda/moneda.gd" id="1_r4iok"]
 [ext_resource type="Texture2D" uid="uid://dxm1pjkgvxaaq" path="res://Sprites/Moneda/1_Peso_SpriteSheet.png" id="2_hphas"]
-[ext_resource type="AudioStream" uid="uid://do12h72iursdc" path="res://AUD-20261002-WA0009.mp3" id="3_67p6b"]
+[ext_resource type="AudioStream" uid="uid://do12h72iursdc" path="res://Sonidos/Sonido de Pickups/AUD-20261002-WA0009.mp3" id="3_67p6b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67p6b"]
 atlas = ExtResource("2_hphas")
@@ -84,18 +84,18 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oexnn"]
 custom_solver_bias = 0.74
-radius = 37.78
+radius = 23.537205
 
 [node name="Moneda" type="Area2D" unique_id=979959033]
 script = ExtResource("1_r4iok")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=880906845]
 texture_filter = 1
-position = Vector2(-1.9999981, -2)
-scale = Vector2(0.4187069, 0.21707174)
+position = Vector2(-4.808422, -2)
+scale = Vector2(0.21720846, 0.21707174)
 sprite_frames = SubResource("SpriteFrames_88uyn")
 autoplay = "default"
-frame_progress = 0.38166615
+frame_progress = 0.90378886
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=233394121]
 position = Vector2(-6, -4)

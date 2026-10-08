@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dq2353ue0108l" path="res://Escenas/Barril/barril.tscn" id="3_61ayu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyn"]
-size = Vector2(201.75, 596.75)
+size = Vector2(201.75, 600.375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trkv8"]
-size = Vector2(207, 599)
+size = Vector2(207, 625.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijngp"]
 size = Vector2(1175, 209)
@@ -22,21 +22,21 @@ scale = Vector2(2.8819952, 3.7727273)
 texture = ExtResource("2_61ayu")
 
 [node name="Columna derecha" type="Sprite2D" parent="." unique_id=1857464109]
-position = Vector2(1177.0001, -92)
+position = Vector2(1173, -70)
 scale = Vector2(0.38593116, 0.85871285)
 texture = ExtResource("1_phkyr")
 
 [node name="Colision derecha" type="CollisionShape2D" parent="." unique_id=1846254082]
-position = Vector2(1177.125, 63.625)
+position = Vector2(1169, 75.1875)
 shape = SubResource("RectangleShape2D_88uyn")
 
 [node name="Columna izquierda" type="Sprite2D" parent="." unique_id=913948397]
-position = Vector2(261, -77.18752)
+position = Vector2(258, -66)
 scale = Vector2(0.3691549, 0.8527276)
 texture = ExtResource("1_phkyr")
 
 [node name="Colision izquierda" type="CollisionShape2D" parent="." unique_id=644101892]
-position = Vector2(268, 68.5)
+position = Vector2(257, 85)
 shape = SubResource("RectangleShape2D_trkv8")
 
 [node name="Barril primer escalon" parent="." unique_id=609586226 instance=ExtResource("3_61ayu")]

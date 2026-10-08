@@ -1,10 +1,67 @@
 [gd_scene format=3 uid="uid://k3juewth2c1g"]
 
 [ext_resource type="Script" uid="uid://bi4ubh2snkfm5" path="res://Escenas/Combi/combi.gd" id="1_e2640"]
-[ext_resource type="Texture2D" uid="uid://begk338ny3d6y" path="res://Sprites/Combi/combi.png" id="2_e2640"]
+[ext_resource type="Texture2D" uid="uid://b6nfr7w5veuox" path="res://Sprites/Combi animaciones/ROTA/combi_rota_01.png" id="2_k88ms"]
+[ext_resource type="Texture2D" uid="uid://nr1nbw2kx7yv" path="res://Sprites/Combi animaciones/EN MARCHA/combi_marcha_01.png" id="2_p1gkm"]
+[ext_resource type="Texture2D" uid="uid://c0fccubki0bw8" path="res://Sprites/Combi animaciones/EN MARCHA/combi_marcha_02.png" id="3_80fk3"]
+[ext_resource type="Texture2D" uid="uid://k8pdndlkxfhr" path="res://Sprites/Combi animaciones/ROTA/combi_rota_02.png" id="3_jp7jr"]
+[ext_resource type="Texture2D" uid="uid://dfkeuxh1j2a4x" path="res://Sprites/Combi animaciones/EN MARCHA/combi_marcha_03.png" id="4_80pul"]
+[ext_resource type="Texture2D" uid="uid://cl27sieyy64e4" path="res://Sprites/Combi animaciones/ROTA/combi_rota_03.png" id="4_h1a45"]
+[ext_resource type="Texture2D" uid="uid://xwfe6ql3r0mb" path="res://Sprites/Combi animaciones/ROTA/combi_rota_04.png" id="5_k08om"]
+[ext_resource type="Texture2D" uid="uid://00hxv3ja7pn2" path="res://Sprites/Combi animaciones/EN MARCHA/combi_marcha_04.png" id="5_xkwfb"]
+[ext_resource type="Texture2D" uid="uid://bkxainjkhx6dh" path="res://Sprites/Combi animaciones/EN MARCHA/combi_marcha_05.png" id="6_f14yc"]
+[ext_resource type="Texture2D" uid="uid://bpppiudoup7w" path="res://Sprites/Combi animaciones/ROTA/combi_rota_05.png" id="6_nkk4j"]
+[ext_resource type="Texture2D" uid="uid://bxqp5m1brlqok" path="res://Sprites/Combi animaciones/ROTA/combi_rota_06.png" id="7_5bdb0"]
+[ext_resource type="AudioStream" uid="uid://1hfwq7pb5nko" path="res://Sonidos/Sonidosmundo/averia-del-motor-1.mp3.mp3" id="13_p1gkm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_88uyn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p1gkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_80fk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_80pul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xkwfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f14yc")
+}],
+"loop": 1,
+"name": &"arrancar",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k88ms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jp7jr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h1a45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k08om")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nkk4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5bdb0")
+}],
+"loop": 1,
+"name": &"espera",
+"speed": 6.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvw3q"]
-size = Vector2(549, 246)
+size = Vector2(590, 276)
 
 [node name="Combi" type="Area2D" unique_id=1750001952]
 texture_filter = 1
@@ -12,10 +69,20 @@ collision_mask = 129
 script = ExtResource("1_e2640")
 metadata/_edit_group_ = true
 
-[node name="Apariencia" type="Sprite2D" parent="." unique_id=1271376187]
-scale = Vector2(0.3421646, 0.34301016)
-texture = ExtResource("2_e2640")
+[node name="Apariencia" type="AnimatedSprite2D" parent="." unique_id=1590224130]
+position = Vector2(-51.000023, -37.5)
+scale = Vector2(0.8932291, 0.9244792)
+sprite_frames = SubResource("SpriteFrames_88uyn")
+animation = &"arrancar"
+autoplay = "espera"
+frame_progress = 0.042613614
 
 [node name="Colision" type="CollisionShape2D" parent="." unique_id=69372034]
-position = Vector2(6.5, 12)
+position = Vector2(-14, -3)
 shape = SubResource("RectangleShape2D_xvw3q")
+
+[node name="SonidoAveria" type="AudioStreamPlayer2D" parent="." unique_id=1326147154]
+stream = ExtResource("13_p1gkm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1164954556]
+rect = Rect2(-1777, -146, 2062, 282)

@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cjdavr2dl2ufl" path="res://Sprites/Terminal/terminal+cargador neutral.png" id="3_x1jca"]
 [ext_resource type="Texture2D" uid="uid://darx2jo1asndq" path="res://Sprites/Terminal/terminal+ cargador positivo.png" id="4_2vueb"]
 [ext_resource type="Texture2D" uid="uid://cbf03621eit7b" path="res://Sprites/Terminal/terminal+cargador quemado.png" id="5_x1jca"]
+[ext_resource type="AudioStream" uid="uid://dqpaph4t3kw45" path="res://Sonidos/Sonidosmundo/estacion-de-carga-llenandose-1.mp3.mp3" id="6_4d1ab"]
+[ext_resource type="AudioStream" uid="uid://c1svhl2gmnjl3" path="res://Sonidos/Sonidosmundo/bateria-correcta-2.mp3.mp3" id="7_m12pt"]
+[ext_resource type="AudioStream" uid="uid://d3e2b22uqux1a" path="res://Sonidos/Sonidosmundo/chispazo-bateria-incorrecta-2.mp3.mp3" id="8_ejju0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
 size = Vector2(475, 487.5)
@@ -23,3 +26,12 @@ texture = ExtResource("2_2vueb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971973500]
 shape = SubResource("RectangleShape2D_itb0o")
+
+[node name="SfxEvaluando" type="AudioStreamPlayer2D" parent="." unique_id=491313636]
+stream = ExtResource("6_4d1ab")
+
+[node name="SfxExito" type="AudioStreamPlayer2D" parent="." unique_id=1527620971]
+stream = ExtResource("7_m12pt")
+
+[node name="SfxFallo" type="AudioStreamPlayer2D" parent="." unique_id=1146870998]
+stream = ExtResource("8_ejju0")

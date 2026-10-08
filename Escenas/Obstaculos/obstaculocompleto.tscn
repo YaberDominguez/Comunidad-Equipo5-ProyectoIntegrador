@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://r3fsvm07ryya"]
+
+[ext_resource type="Texture2D" uid="uid://bb1twr04pwrux" path="res://Sprites/Obstaculos/Obstaculo_Completo.png" id="1_p7l4e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyn"]
+size = Vector2(185, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oexnn"]
+size = Vector2(93, 141)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trkv8"]
+size = Vector2(305, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijngp"]
+size = Vector2(16.999998, 243)
+
+[node name="Obstaculocompleto" type="StaticBody2D" unique_id=102662626]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=823670800]
+texture_filter = 1
+position = Vector2(2.9999847, -7)
+scale = Vector2(0.6563367, 0.51111114)
+texture = ExtResource("1_p7l4e")
+
+[node name="Caja1" type="CollisionShape2D" parent="." unique_id=678677750]
+position = Vector2(-218.5, 37)
+shape = SubResource("RectangleShape2D_88uyn")
+
+[node name="Caja2" type="CollisionShape2D" parent="." unique_id=149920307]
+position = Vector2(-32.5, 2.5)
+shape = SubResource("RectangleShape2D_oexnn")
+
+[node name="Basesuperior" type="CollisionShape2D" parent="." unique_id=961985780]
+position = Vector2(192.5, -180)
+shape = SubResource("RectangleShape2D_trkv8")
+
+[node name="Pilarizquierdo" type="CollisionShape2D" parent="." unique_id=1225739502]
+position = Vector2(98.5, -48.500004)
+shape = SubResource("RectangleShape2D_ijngp")
+
+[node name="Pilarderecho" type="CollisionShape2D" parent="." unique_id=1148959228]
+position = Vector2(287, -46)
+shape = SubResource("RectangleShape2D_ijngp")
