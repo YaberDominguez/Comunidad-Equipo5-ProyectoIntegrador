@@ -83,6 +83,7 @@ shape = SubResource("RectangleShape2D_xvw3q")
 
 [node name="SonidoAveria" type="AudioStreamPlayer2D" parent="." unique_id=1326147154]
 stream = ExtResource("13_p1gkm")
+volume_db = -8.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1164954556]
 rect = Rect2(-1777, -146, 2062, 282)

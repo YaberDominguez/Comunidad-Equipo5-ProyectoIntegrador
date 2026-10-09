@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c2f2bm58fsd65" path="res://Sprites/Platafornas/obstáculo_tubería.png" id="1_phkyr"]
 [ext_resource type="Texture2D" uid="uid://172xkg5qfcic" path="res://Sprites/Platafornas/obstáculo_escaleras.png" id="2_61ayu"]
-[ext_resource type="PackedScene" uid="uid://dq2353ue0108l" path="res://Escenas/Barril/barril.tscn" id="3_61ayu"]
+[ext_resource type="PackedScene" uid="uid://dq2353ue0108l" path="res://Escenas/Obstaculos/barril.tscn" id="3_61ayu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyn"]
 size = Vector2(201.75, 600.375)
@@ -43,7 +43,7 @@ shape = SubResource("RectangleShape2D_trkv8")
 position = Vector2(-76, 213)
 
 [node name="Barril segundo escalon" parent="." unique_id=1595032612 instance=ExtResource("3_61ayu")]
-position = Vector2(-469, 215)
+position = Vector2(-436, 212)
 
 [node name="Barril" parent="." unique_id=2008608791 instance=ExtResource("3_61ayu")]
 position = Vector2(-76, 15)
@@ -53,10 +53,10 @@ position = Vector2(722.5, -334.5)
 shape = SubResource("RectangleShape2D_ijngp")
 
 [node name="Barril segundo escalon2" parent="." unique_id=1034655159 instance=ExtResource("3_61ayu")]
-position = Vector2(2016, 206)
+position = Vector2(1872, 228)
 
 [node name="Barril primer escalon2" parent="." unique_id=824788669 instance=ExtResource("3_61ayu")]
-position = Vector2(1573, 203)
+position = Vector2(1503, 226)
 
 [node name="Barril2" parent="." unique_id=1459110173 instance=ExtResource("3_61ayu")]
-position = Vector2(1573, 5)
+position = Vector2(1500, 10)

@@ -3,11 +3,10 @@ extends Node
 signal puntaje_actualizado(jugador_id: int, nuevo_puntaje: int)
 signal nivel_finalizado(resultados: Dictionary)
 
-# Bonificaciones que se entregarán RECIÉN al terminar el nivel
-const BONO_MILANGA: int = 20
-const BONO_JUGUITO: int = 15
-const BONO_MONEDA: int = 10
-
+# Bonificaciones que se entregarán RECIÉN al terminar el nivel por ser el líder
+const BONO_MILANGA: int = 100
+const BONO_JUGUITO: int = 50
+const BONO_MONEDA: int = 30
 var jugadores_activos: int = 2
 
 var datos_jugadores: Dictionary = {
@@ -33,7 +32,7 @@ func agregar_item(jugador_id: int, tipo_objeto: String, cantidad_puntos: int) ->
 	
 	jugador["puntos_base"] += cantidad_puntos
 	
-	# Durante el nivel SOLO emitimos los puntos base para la UI
+	# Durante el nivel solo emitimos los puntos base para la UI
 	puntaje_actualizado.emit(jugador_id, jugador["puntos_base"])
 
 func agregar_puntos(jugador_id: int, cantidad: int) -> void:
@@ -41,7 +40,6 @@ func agregar_puntos(jugador_id: int, cantidad: int) -> void:
 	datos_jugadores[jugador_id]["puntos_base"] += cantidad
 	puntaje_actualizado.emit(jugador_id, datos_jugadores[jugador_id]["puntos_base"])
 
-# Devuelve solo los puntos base acumulados durante la partida
 func obtener_puntaje(jugador_id: int) -> int:
 	if datos_jugadores.has(jugador_id):
 		return datos_jugadores[jugador_id]["puntos_base"]
@@ -82,15 +80,18 @@ func calcular_bonificacion(jugador_id: int) -> int:
 		
 	return total_bono
 
+## Comprueba si este jugador juntó estrictamente más que todos los demás rivales
 func es_lider_de_item(jugador_id: int, tipo_objeto: String) -> bool:
 	var mis_items: int = datos_jugadores[jugador_id]["contadores"].get(tipo_objeto, 0)
 	
-	if mis_items == 0:
+	# Si no agarró ninguno, no puede ganar bono
+	if mis_items <= 0:
 		return false
 		
-	for p_id in datos_jugadores.keys():
-		if p_id != jugador_id:
-			var items_rival: int = datos_jugadores[p_id]["contadores"].get(tipo_objeto, 0)
+	for rival_id in datos_jugadores.keys():
+		if rival_id != jugador_id:
+			var items_rival: int = datos_jugadores[rival_id]["contadores"].get(tipo_objeto, 0)
+			# Si el rival tiene igual o más cantidad, perdiste el bono (evita empates)
 			if items_rival >= mis_items:
 				return false
 				

@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 			tiempo_empujando = 0.0
 
 		if bateria_equipada != null:
-			$AnimatedSprite2D.play("agarrar")
+			$AnimatedSprite2D.play("run")
 		elif esta_empujando:
 			$AnimatedSprite2D.play("empujar")
 		elif direccion_x != 0:
