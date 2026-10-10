@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bgnxm7jruyarf" path="res://Escenas/Auto obstaculo/auto_obstaculo.tscn" id="2_y0iap"]
 [ext_resource type="PackedScene" uid="uid://ro3sgr855sii" path="res://Escenas/Bateria/bateria.tscn" id="3_hhkdk"]
 [ext_resource type="PackedScene" uid="uid://k3juewth2c1g" path="res://Escenas/Combi/combi.tscn" id="4_8idku"]
+[ext_resource type="Texture2D" uid="uid://b0mm3wrtxpavw" path="res://Sprites/Nube animada/nubes1.png" id="4_hslr2"]
+[ext_resource type="Texture2D" uid="uid://cac88kru1mp2e" path="res://Sprites/Nube animada/nubes2.png" id="5_baam1"]
 [ext_resource type="PackedScene" uid="uid://c0ohrjpwubdyr" path="res://obstaculo.tscn" id="5_n8a3x"]
 [ext_resource type="PackedScene" uid="uid://c5ej8ipj1m52b" path="res://Escenas/Terminal/CargadorBateria.tscn" id="6_djuao"]
 [ext_resource type="PackedScene" uid="uid://cxr5kikjd0far" path="res://Escenas/Jugadores/jugador_1.tscn" id="6_p8jl7"]
@@ -26,7 +28,6 @@
 [ext_resource type="PackedScene" uid="uid://ds31e3t3s5txn" path="res://Escenas/Juguito/juguito.tscn" id="19_nwbah"]
 [ext_resource type="AudioStream" uid="uid://bthejo8co7ce8" path="res://Sonidos/Musica de nivel principal/Urban Funk Rush.mp3" id="20_8xebq"]
 [ext_resource type="PackedScene" uid="uid://r3fsvm07ryya" path="res://Escenas/Obstaculos/obstaculocompleto.tscn" id="21_onls3"]
-[ext_resource type="PackedScene" uid="uid://7ob6s73me613" path="res://nubes.tscn" id="22_qkjq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itb0o"]
 size = Vector2(22680, 923.5)
@@ -36,6 +37,70 @@ size = Vector2(122, 2550)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j51hw"]
 size = Vector2(141.5, 2610)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7wpp"]
+atlas = ExtResource("4_hslr2")
+region = Rect2(0, 0, 2060, 260)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcddt"]
+atlas = ExtResource("5_baam1")
+region = Rect2(0, 0, 2060, 260)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvo4q"]
+atlas = ExtResource("4_hslr2")
+region = Rect2(0, 0, 2060, 260)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i625g"]
+atlas = ExtResource("5_baam1")
+region = Rect2(0, 0, 2060, 260)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ammb6"]
+atlas = ExtResource("4_hslr2")
+region = Rect2(0, 0, 2060, 260)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_287dl"]
+atlas = ExtResource("5_baam1")
+region = Rect2(0, 0, 2060, 260)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg12b"]
+atlas = ExtResource("4_hslr2")
+region = Rect2(0, 0, 2060, 260)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8aeg"]
+atlas = ExtResource("5_baam1")
+region = Rect2(0, 0, 2060, 260)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_itb0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7wpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcddt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvo4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i625g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ammb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_287dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg12b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8aeg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 0.8
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyn"]
 size = Vector2(1485.5, 250.48926)
@@ -71,6 +136,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="mapa" type="StaticBody2D" parent="." unique_id=1694425938]
+texture_filter = 1
 position = Vector2(959, 325)
 
 [node name="Apariencia" type="Sprite2D" parent="mapa" unique_id=547083231]
@@ -99,6 +165,14 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mapa/Limite Derecho" unique_id=598941645]
 position = Vector2(6.75, -275)
 shape = SubResource("RectangleShape2D_j51hw")
+
+[node name="Nube" type="AnimatedSprite2D" parent="mapa" unique_id=1154735168]
+texture_filter = 1
+position = Vector2(10382, 212.99997)
+scale = Vector2(11.023301, 4.0692306)
+sprite_frames = SubResource("SpriteFrames_itb0o")
+autoplay = "default"
+frame_progress = 0.58504695
 
 [node name="Terminal" parent="." unique_id=1844069839 instance=ExtResource("6_djuao")]
 position = Vector2(11242, 2321)
@@ -263,30 +337,11 @@ mensaje_largo = "Este auto parece muy pesado para ser movido por una sola person
 offset_mensaje = Vector2(-100, 0)
 
 [node name="Tutorial_bondi" parent="." unique_id=890173713 instance=ExtResource("15_h7xu0")]
-position = Vector2(22063, 2005)
+position = Vector2(21956, 1945)
 texto_tutorial = "¡Coloca una nueva bateria!!"
 mensaje_largo = "El colectivo necesita una nueva bateria para funcionar"
 offset_mensaje = Vector2(-12, 0)
 metadata/_edit_group_ = true
-
-[node name="Nubes" parent="." unique_id=642701415 instance=ExtResource("22_qkjq8")]
-position = Vector2(2323, 771)
-metadata/_edit_lock_ = true
-
-[node name="Nubes2" parent="." unique_id=359524035 instance=ExtResource("22_qkjq8")]
-position = Vector2(7475, 550)
-metadata/_edit_lock_ = true
-
-[node name="Nubes3" parent="." unique_id=277660270 instance=ExtResource("22_qkjq8")]
-position = Vector2(12884, 465)
-metadata/_edit_lock_ = true
-
-[node name="Nubes4" parent="." unique_id=1685345634 instance=ExtResource("22_qkjq8")]
-position = Vector2(18145, 960)
-metadata/_edit_lock_ = true
-
-[node name="Nubes5" parent="." unique_id=1939540268 instance=ExtResource("22_qkjq8")]
-position = Vector2(23684, 1145)
 
 [connection signal="body_entered" from="Tutorial_interactuar" to="Tutorial_interactuar" method="_on_body_entered"]
 [connection signal="body_entered" from="Tutorial_salto" to="Tutorial_salto" method="_on_body_entered"]

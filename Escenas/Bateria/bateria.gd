@@ -17,7 +17,7 @@ func _ready() -> void:
 	area_deteccion.body_entered.connect(_on_body_entered)
 	area_deteccion.body_exited.connect(_on_body_exited)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Si la batería tiene un dueño, actualizamos de qué lado del cuerpo está
 	if duenio_actual != null:
 		var distancia_manos = 100.0 # <-- Ajustá este número para que quede justo en la mano

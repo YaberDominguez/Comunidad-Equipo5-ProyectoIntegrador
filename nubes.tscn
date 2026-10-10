@@ -213,6 +213,8 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_itb0o"]
+
 [node name="Nubes" type="StaticBody2D" unique_id=642701415]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=28389572]
@@ -223,4 +225,5 @@ sprite_frames = SubResource("SpriteFrames_88uyn")
 autoplay = "default"
 frame_progress = 0.03528277
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1108491350]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=546707652]
+shape = SubResource("SegmentShape2D_itb0o")

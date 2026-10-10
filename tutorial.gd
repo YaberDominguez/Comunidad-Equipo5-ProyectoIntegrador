@@ -8,7 +8,7 @@ extends Area2D
 var jugadores_adentro: int = 0
 
 func _ready():
-	body_entered.connect(_on_body_entered)
+	#body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	
 	if has_node("Mensaje"):

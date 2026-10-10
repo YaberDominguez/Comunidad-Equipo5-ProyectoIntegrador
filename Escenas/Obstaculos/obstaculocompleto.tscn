@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bb1twr04pwrux" path="res://Sprites/Obstaculos/Obstaculo_Completo.png" id="1_p7l4e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyn"]
-size = Vector2(185, 72)
+size = Vector2(232.75, 77)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oexnn"]
 size = Vector2(93, 141)
@@ -23,7 +23,7 @@ scale = Vector2(0.6563367, 0.51111114)
 texture = ExtResource("1_p7l4e")
 
 [node name="Caja1" type="CollisionShape2D" parent="." unique_id=678677750]
-position = Vector2(-218.5, 37)
+position = Vector2(-196.375, 35)
 shape = SubResource("RectangleShape2D_88uyn")
 
 [node name="Caja2" type="CollisionShape2D" parent="." unique_id=149920307]

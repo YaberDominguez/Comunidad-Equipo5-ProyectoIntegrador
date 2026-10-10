@@ -10,6 +10,10 @@ var velocidad: float = 600.0
 var multiplicador_buff: float = 1.0
 var timer_buff: SceneTreeTimer = null
 
+# --- NUEVAS VARIABLES PARA EL EFECTO VISUAL ---
+var tiene_buff: bool = false
+@export var velocidad_color: float = 5.0 
+
 # Referencias a baterías
 var bateria_cercana: RigidBody2D = null    
 var bateria_equipada: RigidBody2D = null
@@ -36,6 +40,14 @@ func _ready() -> void:
 	velocidad = velocidad_base
 	add_to_group("jugador")
 	$CartelTutorial.hide()
+
+
+# --- CICLO DE COLOR PARA EL BUFF ---
+func _process(_delta: float) -> void:
+	if tiene_buff:
+		var tiempo = Time.get_ticks_msec() / 1000.0
+		var tono_actual = wrapf(tiempo * velocidad_color, 0.0, 1.0)
+		$AnimatedSprite2D.modulate = Color.from_hsv(tono_actual, 1.0, 1.0)
 
 
 func _physics_process(delta: float) -> void:
@@ -182,11 +194,14 @@ func _procesar_empuje(direccion_x: float) -> bool:
 	return empujando_caja
 
 
-# --- APLICACIÓN SEGURA DE BUFFS DE VELOCIDAD ---
+# --- APLICACIÓN SEGURA DE BUFFS DE VELOCIDAD Y COLOR ---
 func aplicar_buff_velocidad(multiplicador: float, duracion: float) -> void:
 	# 1. Aplica el multiplicador siempre basándose en la velocidad_base
 	multiplicador_buff = multiplicador
 	velocidad = velocidad_base * multiplicador_buff
+	
+	# Activa el cambio de colores visual
+	tiene_buff = true
 	
 	# 2. Resetea el timer previo para extender el tiempo al agarrar otro objeto
 	if timer_buff != null:
@@ -196,6 +211,8 @@ func aplicar_buff_velocidad(multiplicador: float, duracion: float) -> void:
 	timer_buff = get_tree().create_timer(duracion)
 	await timer_buff.timeout
 	
-	# 4. Restaura exactamente la velocidad base original
+	# 4. Restaura exactamente la velocidad base original y el color
 	multiplicador_buff = 1.0
 	velocidad = velocidad_base
+	tiene_buff = false
+	$AnimatedSprite2D.modulate = Color(1, 1, 1, 1)

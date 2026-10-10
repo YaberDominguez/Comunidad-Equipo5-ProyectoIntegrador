@@ -4,6 +4,16 @@ extends CharacterBody2D
 @export var player_id: int = 4
 @export var fuerza_empuje: float = 80.0 # Fuerza para mover objetos pesados (RigidBody2D)
 
+# --- SISTEMA DE VELOCIDAD Y BUFFS ---
+@export var velocidad_base: float = 600.0
+var velocidad: float = 600.0
+var multiplicador_buff: float = 1.0
+var timer_buff: SceneTreeTimer = null
+
+# --- NUEVAS VARIABLES PARA EL EFECTO VISUAL ---
+var tiene_buff: bool = false
+@export var velocidad_color: float = 5.0 
+
 # Referencias a baterías (Cambiado de Area2D a RigidBody2D)
 var bateria_cercana: RigidBody2D = null    
 var bateria_equipada: RigidBody2D = null
@@ -13,7 +23,6 @@ var colectivo_cercano: Area2D = null # La usaremos para el final
 # Esta variable la asigna dinámicamente el PlayerManager para P3 y P4
 var device_id: int = -1
 
-var velocidad := 600.0
 var fuerza_salto := -800.0
 var vida := 100
 var ultima_direccion := Vector2(1, 0)
@@ -27,8 +36,17 @@ const MARGEN_EMPUJE := 0.15 # Tolerancia de 0.15s para que la animación no parp
 
 
 func _ready() -> void:
+	velocidad = velocidad_base
 	add_to_group("jugador")
 	$CartelTutorial.hide()
+
+
+# --- CICLO DE COLOR PARA EL BUFF ---
+func _process(_delta: float) -> void:
+	if tiene_buff:
+		var tiempo = Time.get_ticks_msec() / 1000.0
+		var tono_actual = wrapf(tiempo * velocidad_color, 0.0, 1.0)
+		$AnimatedSprite2D.modulate = Color.from_hsv(tono_actual, 1.0, 1.0)
 
 
 func _physics_process(delta: float) -> void:
@@ -107,6 +125,8 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("run")
 		else:
 			$AnimatedSprite2D.play("idle")
+
+
 var esperando_accion: String = ""
 
 func mostrar_ayuda(texto: String, accion_base: String):
@@ -131,9 +151,12 @@ func mostrar_ayuda(texto: String, accion_base: String):
 	$CartelTutorial.text = "[" + nombre_boton + "] " + texto
 	$CartelTutorial.show()
 
+
 func apagar_ayuda():
 	$CartelTutorial.hide()
 	esperando_accion = ""
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	# Detecta si se presionó la acción global "Interactuar"
 	if esperando_accion != "" and event.is_action_pressed(esperando_accion):
@@ -158,8 +181,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if bateria_cercana != null and bateria_equipada == null:
 		bateria_cercana.ser_agarrada_por(self)
 		get_viewport().set_input_as_handled()
-# Función que aplica fuerza física al RigidBody2D y devuelve true si hay colisión activa de empuje
 
+
+# Función que aplica fuerza física al RigidBody2D y devuelve true si hay colisión activa de empuje
 func _procesar_empuje(direccion_x: float) -> bool:
 	var empujando_caja := false
 
@@ -183,3 +207,21 @@ func _procesar_empuje(direccion_x: float) -> bool:
 				empujando_caja = true
 
 	return empujando_caja
+
+
+# --- APLICACIÓN SEGURA DE BUFFS DE VELOCIDAD Y COLOR ---
+func aplicar_buff_velocidad(multiplicador: float, duracion: float) -> void:
+	multiplicador_buff = multiplicador
+	velocidad = velocidad_base * multiplicador_buff
+	tiene_buff = true
+	
+	if timer_buff != null:
+		timer_buff = null
+	
+	timer_buff = get_tree().create_timer(duracion)
+	await timer_buff.timeout
+	
+	multiplicador_buff = 1.0
+	velocidad = velocidad_base
+	tiene_buff = false
+	$AnimatedSprite2D.modulate = Color(1, 1, 1, 1)

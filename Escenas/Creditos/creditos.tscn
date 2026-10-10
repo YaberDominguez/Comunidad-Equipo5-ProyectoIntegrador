@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bjp4pomwox7p5"]
+
+[ext_resource type="Script" uid="uid://dhs8utarkeja3" path="res://creditos.gd" id="1_xs6jd"]
+
+[node name="Creditos" type="Control" unique_id=1351136271]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xs6jd")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1474083683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.011764706, 0.011764706, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2089196719]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 1.0
+offset_right = 939.0
+offset_bottom = 649.0
+bbcode_enabled = true
+text = "[center]
+[font_size=30][b]Ultima Combi[/b][/font_size]
+Un juego multijugador 2D ambientado en un Tucumán post-apocalíptico.
+Proyecto Integrador
+
+[font_size=20][b]PROGRAMACIÓN Y DESARROLLO[/b][/font_size]
+
+Yaber Damián María Domínguez Baez
+Fabricio Molina
+
+[font_size=20][b]ARTE[/b][/font_size]
+
+Fernando Agustin Barrionuevo
+Mariana Barcellone
+
+[font_size=20][b]SONIDO Y MÚSICA[/b][/font_size]
+
+Nicolas Lazarte Matheus
+
+[font_size=20][b]Diseño y produccion[/b][/font_size]
+Nicolas Lazarte Matheus
+Bruno Toledo Puertas
+
+[font_size=20][b]HERRAMIENTAS UTILIZADAS[/b][/font_size]
+Godot Engine
+Git y GitHub
+
+[font_size=24][b]¡GRACIAS POR JUGAR![/b][/font_size]
+[/center]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
